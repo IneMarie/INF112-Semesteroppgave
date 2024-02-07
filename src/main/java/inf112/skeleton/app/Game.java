@@ -11,7 +11,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.graphics.Texture;
 
-public class HelloWorld implements ApplicationListener {
+public class Game implements ApplicationListener {
 	private SpriteBatch batch;
 	private BitmapFont font;
 	private Texture spriteImage;
@@ -28,7 +28,7 @@ public class HelloWorld implements ApplicationListener {
 		font = new BitmapFont();
 		font.setColor(Color.RED);
 		spriteImage = new Texture(Gdx.files.internal("obligator.png"));
-		spriteRect = new Rectangle(1, 1, spriteImage.getWidth() / 2, spriteImage.getHeight() / 2);
+		spriteRect = new Rectangle(1, 1, spriteImage.getWidth() / 2f, spriteImage.getHeight() / 2f);
 		bellSound = Gdx.audio.newSound(Gdx.files.internal("blipp.ogg"));
 		Gdx.graphics.setForegroundFPS(60);
 	}
@@ -50,24 +50,11 @@ public class HelloWorld implements ApplicationListener {
 		bellSound.dispose();
 	}
 
-	@Override
-	public void render() {
-		// Called when the application should draw a new frame (many times per second).
-
-		// This is a minimal example – don't write your application this way!
-
-		// Start with a blank screen
-		ScreenUtils.clear(Color.WHITE);
-
-		// Draw calls should be wrapped in batch.begin() ... batch.end()
-		batch.begin();
-		font.draw(batch, "Hello, World!", 200, 200);
-		batch.draw(spriteImage, spriteRect.x, spriteRect.y, spriteRect.width, spriteRect.height);
-		batch.end();
-
-		// Move the alligator a bit. You normally shouldn't mix rendering with logic in
-		// this way. (Also, movement should probably be based on *time*, not on how
-		// often we update the graphics!)
+	/**
+	 * Updates the game state before drawing.
+	 * @param deltaSeconds Time passed since last frame.
+	 */
+	public void update(float deltaSeconds) {
 		Rectangle.tmp.set(spriteRect);
 		Rectangle.tmp.x += dx;
 		Rectangle.tmp2.set(spriteRect);
@@ -88,6 +75,34 @@ public class HelloWorld implements ApplicationListener {
 		if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) { // check for key press
 			Gdx.app.exit();
 		}
+
+	}
+
+	/**
+	 * Called once per frame after update.
+	 */
+	public void draw() {
+
+		ScreenUtils.clear(Color.WHITE);
+
+		batch.begin();
+		{ // Draw images here
+			font.draw(batch, "Hello, World!", 200, 200);
+			font.draw(batch, "spriteRect = " + spriteRect.toString(), 10, 20);
+			font.draw(batch, "screenRect = " + screenRect.toString(), 10, 40);
+			batch.draw(spriteImage, spriteRect.x, spriteRect.y, spriteRect.width, spriteRect.height);
+		}
+		batch.end();
+	}
+
+	/**
+	 * The main loop of the game.
+	 * Gets called every frame by libGDX.
+	 */
+	@Override
+	public void render() {
+		update(Gdx.graphics.getDeltaTime());
+		draw();
 	}
 
 	@Override
