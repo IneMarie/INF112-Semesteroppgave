@@ -1,4 +1,4 @@
 # Rapport – innlevering 1
-**Team:** *Teamnavn* – *medlemmer*...
+**Team:** *Teamnavn* – *medlemmer*..
 
 
