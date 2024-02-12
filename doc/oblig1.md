@@ -24,17 +24,17 @@
 > Link til [issueboard](LINK)
 
 ## Oppgave A2: Konsept
-Lorem ipsum
+Placeholder
 
 ## Oppgave A3: Velg og tilpass en prosess for teamet
-Lorem ipsum
+Placeholder
 
 ## Oppgave A3 (del 2?): Få oversikt over forventet produkt
-Lorem ipsum
+Placeholder
 
 ## Oppgave A4: Kode
-Lorem ipsum
+Placeholder
 
 ## Oppgave A5: Oppsummering
-Lorem ipsum
+Placeholder
 
