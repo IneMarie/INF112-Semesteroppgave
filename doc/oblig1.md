@@ -21,7 +21,8 @@
 ## Oppgave A1
 > Sjekk README.md
 > 
-> Link til [issueboard](LINK)
+> Link til [issue board](LINK)
+
 
 ## Oppgave A2: Konsept
 Placeholder
