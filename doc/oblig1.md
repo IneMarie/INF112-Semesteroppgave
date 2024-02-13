@@ -21,7 +21,7 @@
 ## Oppgave A1
 > Sjekk README.md
 > 
-> Link til [issue board](LINK)
+> Link til [issue board](https://trello.com/b/zh9J5B3W/board)
 
 
 ## Oppgave A2: Konsept
@@ -36,7 +36,7 @@
 
 
 ## Oppgave A3: Velg og tilpass en prosess for teamet
-Placeholder
+Vi organiserer gruppearbeidet gjennom samtaler på de oppsatte gruppetimene, og på discord. Dersom vi har behov for flere møter, blir vi enige om et klokkeslett som passer for alle. I tillegg holder vi trello oppdatert slik at man kan få en oversikt over gjenstående oppgaver og hvor vi er i utviklings prossessen. (Tar utgangspunkt i "Kanban" metoden)
 
 ## Oppgave A3 (del 2?): Få oversikt over forventet produkt
 1. Vise et spillebrett
