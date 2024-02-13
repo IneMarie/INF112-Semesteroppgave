@@ -25,7 +25,15 @@
 
 
 ## Oppgave A2: Konsept
-Placeholder
+* Top-down spill der du springer fra lava/fiender og dytter bokser.
+    * Spillfigur som kan styres i alle retninger.
+    * Bokser som kan dyttes av spiller.
+    * Vegg som er ubevegelig av spiller og bokser.
+    * Lava som stiger fra bunnen av skjermen.
+    * 3 plasserte mynter som gir ekstra poeng på slutten av banen.
+    * vertikalt scrollende banene
+    * power-ups
+
 
 ## Oppgave A3: Velg og tilpass en prosess for teamet
 Placeholder
