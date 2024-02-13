@@ -39,7 +39,16 @@
 Placeholder
 
 ## Oppgave A3 (del 2?): Få oversikt over forventet produkt
-Placeholder
+1. Vise et spillebrett
+2. Vise spiller på spillebrett
+3. Flytte spiller (vha taster e.l.)
+4. Spiller interagerer med terreng
+5. Spiller har *poeng* og interagerer med poenggjenstander
+6. Vise lava som skal interagere med spiller.
+7. Spiller kan dø (ved kontakt med lava).
+8. Mål for spillbrett (et sted i toppen av banen.)
+9. Nytt spillbrett når forrige er ferdig
+10. Start-skjerm ved oppstart / game over
 
 ## Oppgave A4: Kode
 Placeholder
