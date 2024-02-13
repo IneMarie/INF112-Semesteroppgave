@@ -20,7 +20,7 @@ Kurt-Mario blir *mindre* – ikke større – når han spiser sopp fra Nygårdsp
 ## Viktige lenker
 [Møtereferat](https://docs.google.com/document/d/10a05Fu1_dx0Y_XaLF6ZEFuFKvsOZK4iNWEVNr36HerU/edit)
 
-[Issue board -- TODO]()
+[Trello issue board](https://trello.com/b/zh9J5B3W/board)
 
 [libGDX og maven template](doc/libGDX+Maven.md)
 
