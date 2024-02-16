@@ -1,10 +1,10 @@
 # INF112 Project – *Navn på spill* 
 ### Amateur Alliance *(Gruppe 2)*
 #### Team: 
-* Ivar (`Rolle`)
-* Sander (`Rolle`)
-* Mats (`Rolle`)
-* Ine (`Rolle`)
+* Ivar (`CEO`)
+* Sander (`CFO`)
+* Mats (`Kundekontakt`)
+* Ine (`Testansvarlig`)
 
 ## Om spillet
 >«Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sagittis, lorem at semper lobortis, magna magna vulputate eros, sit amet ultrices lectus tellus a eros. Donec orci nibh, ultrices vitae ante sit amet, pulvinar consectetur ex. Suspendisse potenti. Nulla pharetra mollis convallis. Nunc sed dui dignissim, rhoncus nibh in, ultrices tellus. Aliquam fermentum viverra ullamcorper.»*
