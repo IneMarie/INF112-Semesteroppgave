@@ -41,6 +41,8 @@ Vi organiserer gruppearbeidet gjennom samtaler på de oppsatte gruppetimene, og 
 > (Tar utgangspunkt i "Kanban" metoden)
 
 ## Oppgave A3 (del 2?): Få oversikt over forventet produkt
+
+### Røff liste med mål
 1. Vise et spillebrett
 2. Vise spiller på spillebrett
 3. Flytte spiller (vha taster e.l.)
@@ -51,6 +53,18 @@ Vi organiserer gruppearbeidet gjennom samtaler på de oppsatte gruppetimene, og 
 8. Mål for spillbrett (et sted i toppen av banen.)
 9. Nytt spillbrett når forrige er ferdig
 10. Start-skjerm ved oppstart / game over
+
+### Som brukerhistorier
+1. Som en spiller ønsker jeg å se et spillebrett, slik at jeg kan forstå spillområdet.
+2. Som en spiller ønsker jeg å se min karakter på spillebrettet, slik at jeg kan identifisere posisjonen min.
+3. Som en spiller ønsker jeg å kunne flytte karakteren min ved hjelp av tastene eller lignende, slik at jeg kan utforske spillebrettet.
+4. Som en spiller ønsker jeg å kunne interagere med terreng på spillebrettet, slik at jeg kan oppleve ulike utfordringer og belønninger.
+5. Som en spiller ønsker jeg å ha poeng, og jeg vil interagere med poenggjenstander for å øke poengsummen min.
+6. Som en spiller ønsker jeg å se lava på spillebrettet, og den skal påvirke karakteren min, slik at spillet blir utfordrende.
+7. Som en spiller ønsker jeg å oppleve muligheten til å dø ved kontakt med lava, for å gi en konsekvens ved feil handlinger.
+8. Som en spiller ønsker jeg å ha et mål plassert øverst på spillebrettet, slik at jeg har noe å jobbe mot.
+9. Som en spiller ønsker jeg å starte et nytt spillbrett når jeg har fullført det forrige, slik at jeg kan fortsette å utforske nye utfordringer.
+10. Som en spiller ønsker jeg å se en startskjerm ved oppstart og en spill over-skjerm når jeg mislykkes, slik at jeg kan navigere mellom ulike spilltilstander.
 
 ## Oppgave A4: Kode
 Placeholder
