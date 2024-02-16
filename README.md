@@ -1,4 +1,4 @@
-# INF112 Project – *Navn på spill* 
+# INF112 Project – *BLOCK-PAIN!* 
 ### Amateur Alliance *(Gruppe 2)*
 #### Team: 
 * Ivar (`CEO`)
@@ -7,7 +7,7 @@
 * Ine (`Testansvarlig`)
 
 ## Om spillet
->«Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sagittis, lorem at semper lobortis, magna magna vulputate eros, sit amet ultrices lectus tellus a eros. Donec orci nibh, ultrices vitae ante sit amet, pulvinar consectetur ex. Suspendisse potenti. Nulla pharetra mollis convallis. Nunc sed dui dignissim, rhoncus nibh in, ultrices tellus. Aliquam fermentum viverra ullamcorper.»*
+>“Ravi er gruvevandring i en aktiv vulkan, det viser seg at en ancient milits som har fanget ravi inne i coinbanken deres og ravi er nå på rømmen fra både akse-ekstreme forces og en stadig mer aktiv vulkan“
 
 ## Kjøring (TODO)
 * Kompileres med `mvn package`.
@@ -15,7 +15,7 @@
 * Krever Java 21 eller senere
 
 ## Kjente feil (TODO)
-Kurt-Mario blir *mindre* – ikke større – når han spiser sopp fra Nygårdsparken.
+Ingen foreløpig
 
 ## Viktige lenker
 [Semesteroppgave krav](https://git.app.uib.no/inf112/24v/inf112-24v/-/wikis/prosjekt/semesteroppgave)

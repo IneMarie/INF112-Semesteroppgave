@@ -41,7 +41,6 @@ Vi organiserer gruppearbeidet gjennom samtaler på de oppsatte gruppetimene, og 
 > (Tar utgangspunkt i "Kanban" metoden)
 
 ## Oppgave A3 (del 2?): Få oversikt over forventet produkt
-
 ### Røff liste med mål
 1. Vise et spillebrett
 2. Vise spiller på spillebrett
@@ -66,9 +65,10 @@ Vi organiserer gruppearbeidet gjennom samtaler på de oppsatte gruppetimene, og 
 9. Som en spiller ønsker jeg å starte et nytt spillbrett når jeg har fullført det forrige, slik at jeg kan fortsette å utforske nye utfordringer.
 10. Som en spiller ønsker jeg å se en startskjerm ved oppstart og en spill over-skjerm når jeg mislykkes, slik at jeg kan navigere mellom ulike spilltilstander.
 
-## Oppgave A4: Kode
-Placeholder
-
 ## Oppgave A5: Oppsummering
-Placeholder
+Vi har hatt en bra start på prosjektet, og har til nå gjennomført alle oppgavene som er blitt gitt. 
+Alle er optimistiske for prosjektet fremover og tror de har en viss idé på hva de kan bidra med. Alle møtte opp og vi planla å møtes gjennom doodle, vår nylig påpekte CEO tok ansvar for møtene til nå. Vi møtte på noen problemer med Git og Gitlab ettersom alle ikke var helt kjente med dette enda, men vi løste det sammen og hjalp hverandre underveis. Vi klarte heller ikke å opprette et gitlab issue-board (eller rettere sagt bruke det), derfor byttet vi dette heller med Trello.
+Vi har og alle sett på libgdx og prøvd å gjøre oss noe mer kjent med dette. Fremover så tar vi med oss videre at det har fungert med Trello som et issue-board, doodle for møteplanlegging og Discord for kommunikasjon. 
+Alle har bidratt til oppgavene og diskusjonene rundt prosjektet og utviklingsprosessen
+
 
