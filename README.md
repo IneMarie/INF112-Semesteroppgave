@@ -18,6 +18,8 @@
 Kurt-Mario blir *mindre* – ikke større – når han spiser sopp fra Nygårdsparken.
 
 ## Viktige lenker
+[Semesteroppgave krav](https://git.app.uib.no/inf112/24v/inf112-24v/-/wikis/prosjekt/semesteroppgave)
+
 [Møtereferat](https://docs.google.com/document/d/10a05Fu1_dx0Y_XaLF6ZEFuFKvsOZK4iNWEVNr36HerU/edit)
 
 [Trello issue board](https://trello.com/b/zh9J5B3W/board)
