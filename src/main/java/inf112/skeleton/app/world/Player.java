@@ -28,6 +28,9 @@ public class Player {
 
     void update(float deltaSeconds) {
         Vector2i input = Input.playerMove();
+
+        if (input.x() != 0) {
+        }
     }
 
     void draw(SpriteBatch sb) {

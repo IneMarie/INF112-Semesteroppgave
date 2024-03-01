@@ -5,7 +5,7 @@ import jdk.jshell.spi.ExecutionControl;
 
 public class Map {
 
-    Block getBlock(int x, int y) throws ExecutionControl.NotImplementedException {
+    Tile getBlock(int x, int y) throws ExecutionControl.NotImplementedException {
         throw new ExecutionControl.NotImplementedException("Not Implemented");
     }
 
