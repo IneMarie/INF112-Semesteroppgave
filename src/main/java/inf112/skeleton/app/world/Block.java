@@ -12,7 +12,7 @@ public enum Block {
     public final boolean movable;
 
     private Block(String texture_path, boolean solid, boolean movable) {
-        this.texture = new Texture(Gdx.files.internal("Dungeon Crawl Stone Soup Full/player/base/orc_male.png"));
+        this.texture = new Texture(Gdx.files.internal(texture_path));
         this.solid = solid;
         this.movable = movable;
     }
