@@ -19,18 +19,24 @@ public class Player {
 
 
     public void setPosition(Vector2i position) {
-        position = position.copy();
+        this.position = position;
     }
 
     public Vector2i getPosition() {
-        return position.copy();
+        return position;
     }
 
     void update(float deltaSeconds) {
         Vector2i input = Input.playerMove();
 
+        Vector2i movement = input;
         if (input.x() != 0) {
+             movement = new Vector2i(input.x(), 0);
+        } else if (input.y() != 0) {
+            movement = new Vector2i(0, input.y());
         }
+
+        position = position.add(movement);
     }
 
     void draw(SpriteBatch sb) {
