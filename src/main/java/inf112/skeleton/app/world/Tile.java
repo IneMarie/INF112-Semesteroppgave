@@ -5,7 +5,8 @@ import com.badlogic.gdx.graphics.Texture;
 
 public enum Tile {
     Floor("Dungeon Crawl Stone Soup Full/dungeon/floor/grass/grass0-dirt-mix_1.png", false, false),
-    Wall("Dungeon Crawl Stone Soup Full/dungeon/wall/brick_brown_2.png", true, false);
+    Wall("Dungeon Crawl Stone Soup Full/dungeon/wall/brick_brown_2.png", true, false),
+    Lava("Dungeon Crawl Stone Soup Full/dungeon/floor/lava_2.png", true, false);
 
     public final Texture texture;
     public final boolean solid;
