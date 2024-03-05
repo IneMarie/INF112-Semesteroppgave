@@ -64,7 +64,7 @@ public class Player implements IEntity {
         if (!position.equals(new_position)) {
             secondsMoved = 0.0f;
             isMoving = true;
-            moveFrom.set(position.x(), position.y());
+            moveFrom.set(screenPosition);
             moveTo.set(new_position.x(), new_position.y());
             position = new_position;
         }
