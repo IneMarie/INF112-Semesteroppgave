@@ -6,24 +6,27 @@ import com.badlogic.gdx.math.Vector2;
 import inf112.skeleton.app.assets.Textures;
 
 public enum Tile {
-    Floor(Textures.Floor.texture, Flag.None),
+    Floor(Textures.Floor.texture),
     Wall(Textures.Wall.texture, Flag.Solid),
     Lava(Textures.Lava.texture, Flag.Damaging),
     Snake(Textures.Snake.texture, Flag.Damaging, Flag.Solid);
 
     public enum Flag {
-        None, // None must be the first flag.
-        Solid, Movable, Damaging;
+        Solid,
+        Movable,
+        Damaging;
+
+        Flag() {
+            if (ordinal() > 63)
+                throw new IllegalStateException("You can not have that many flags.");
+        }
 
         private long val() {
-            if (ordinal() == 0) {
-                return 0L;
-            }
-            return 1L << (ordinal() - 1);
+            return 1L << ordinal();
         }
 
         static private long join(Flag ... flags) {
-            long v = 0;
+            long v = 0L;
             for (var flag : flags) {
                 v |= flag.val();
             }
@@ -43,7 +46,7 @@ public enum Tile {
         return (this.flags & flag.val()) != 0;
     }
 
-    public boolean isAll(Flag ... flags) {
+    public boolean isAllOf(Flag ... flags) {
         for (var f : flags) {
             if (!is(f)) {
                 return false;
@@ -60,7 +63,7 @@ public enum Tile {
         return v == 0L;
     }
 
-    public boolean isAny(Flag ... flags) {
+    public boolean isAnyOf(Flag ... flags) {
         for (var f : flags) {
             if (is(f)) {
                 return true;
@@ -69,8 +72,8 @@ public enum Tile {
         return false;
     }
 
-    public boolean isNone(Flag ... flags) {
-        return !isAny();
+    public boolean isNoneOf(Flag ... flags) {
+        return !isAnyOf(flags);
     }
     public void draw(SpriteBatch sb, Vector2 position, Vector2 origin) {
         sb.draw(texture, position.x - origin.x, position.y - origin.y, 1, 1);
