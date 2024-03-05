@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import inf112.skeleton.app.Input;
 import inf112.skeleton.app.geometry.Vector2i;
-import org.jetbrains.annotations.NotNull;
 
 public class Player implements IEntity {
 
