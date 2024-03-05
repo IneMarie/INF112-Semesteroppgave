@@ -13,6 +13,7 @@ import inf112.skeleton.app.assets.Textures;
 import inf112.skeleton.app.geometry.Vector2i;
 import inf112.skeleton.app.world.IEntity;
 import inf112.skeleton.app.world.IWorld;
+import inf112.skeleton.app.world.Lava;
 import inf112.skeleton.app.world.Player;
 import inf112.skeleton.app.world.Tile;
 
@@ -24,6 +25,7 @@ public class Game implements ApplicationListener, IWorld, Input.StateMachine {
 	private CameraController2D uiCamera;
 	private Input.State inputState;
 	Player player;
+  private Lava lava;
 
 	@Override
 	public void create() {
@@ -46,6 +48,8 @@ public class Game implements ApplicationListener, IWorld, Input.StateMachine {
 
 		player = new Player(new Vector2i(0, 0), this);
 
+    lava = new Lava(-1, 1);
+
 		Input.stateMachine = this;
 		inputState = Input.State.GamePlay;
 	}
@@ -67,6 +71,10 @@ public class Game implements ApplicationListener, IWorld, Input.StateMachine {
 	public void update(float deltaSeconds) {
 		// Don't handle input this way – use event handlers!
 		player.update(deltaSeconds);
+
+    if (Gdx.input.isKeyJustPressed(com.badlogic.gdx.Input.Keys.L)) { // TESTING TODO
+			lava.updateLava();
+		}
 	}
 
 	/**
@@ -80,6 +88,7 @@ public class Game implements ApplicationListener, IWorld, Input.StateMachine {
 		{ // Draw world
 			player.draw(batch);
 			Tile.Snake.draw(batch, Vector2.Zero);
+      lava.draw(batch);
 		}
 		batch.end();
 
