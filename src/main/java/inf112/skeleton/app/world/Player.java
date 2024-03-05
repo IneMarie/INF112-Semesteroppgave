@@ -1,10 +1,10 @@
 package inf112.skeleton.app.world;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import inf112.skeleton.app.Input;
+import inf112.skeleton.app.assets.Textures;
 import inf112.skeleton.app.geometry.Vector2i;
 
 public class Player implements IEntity {
@@ -12,7 +12,7 @@ public class Player implements IEntity {
     private Vector2 screenPosition;
     private Vector2i position;
     private IWorld world;
-    private static final Texture texture = new Texture(Gdx.files.internal("Dungeon Crawl Stone Soup Full/player/base/centaur_darkbrown_male.png"));
+    private static final Texture texture = Textures.Player.texture;
 
 
     public Player(Vector2i position, IWorld world) {
