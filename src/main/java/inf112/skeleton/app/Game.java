@@ -2,7 +2,6 @@ package inf112.skeleton.app;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -15,13 +14,14 @@ import inf112.skeleton.app.world.IEntity;
 import inf112.skeleton.app.world.IWorld;
 import inf112.skeleton.app.world.Player;
 
-public class Game implements ApplicationListener, IWorld {
+public class Game implements ApplicationListener, IWorld, Input.StateMachine {
 	private SpriteBatch batch;
 	private BitmapFont font;
 	private Texture spriteImage;
 	private Sound bellSound;
 	private CameraController2D worldCamera;
 	private CameraController2D uiCamera;
+	private Input.State inputState;
 	Player player;
 
 	@Override
@@ -46,6 +46,8 @@ public class Game implements ApplicationListener, IWorld {
 
 		player = new Player(new Vector2i(0, 0), this);
 
+		Input.stateMachine = this;
+		inputState = Input.State.GamePlay;
 	}
 
 	@Override
@@ -115,5 +117,10 @@ public class Game implements ApplicationListener, IWorld {
 	@Override
 	public Vector2i moveEntity(IEntity entity, Vector2i movement) {
 		return entity.getPosition().add(movement);
+	}
+
+	@Override
+	public Input.State getState() {
+		return inputState;
 	}
 }
