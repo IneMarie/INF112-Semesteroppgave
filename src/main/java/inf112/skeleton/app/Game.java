@@ -10,14 +10,19 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.graphics.Texture;
+import inf112.skeleton.app.geometry.Vector2i;
+import inf112.skeleton.app.world.IEntity;
+import inf112.skeleton.app.world.IWorld;
+import inf112.skeleton.app.world.Player;
 
-public class Game implements ApplicationListener {
+public class Game implements ApplicationListener, IWorld {
 	private SpriteBatch batch;
 	private BitmapFont font;
 	private Texture spriteImage;
 	private Sound bellSound;
 	private CameraController2D worldCamera;
 	private CameraController2D uiCamera;
+	Player player;
 
 	@Override
 	public void create() {
@@ -38,6 +43,9 @@ public class Game implements ApplicationListener {
 		uiCamera = new CameraController2D(720);
 		uiCamera.screenAnchor.x = 0f;
 		uiCamera.screenAnchor.y = 0f;
+
+		player = new Player(new Vector2i(0, 0), this);
+
 	}
 
 	@Override
@@ -57,12 +65,7 @@ public class Game implements ApplicationListener {
 	 */
 	public void update(float deltaSeconds) {
 		// Don't handle input this way – use event handlers!
-		if (Gdx.input.justTouched()) { // check for mouse click
-			bellSound.play();
-		}
-		if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) { // check for key press
-			Gdx.app.exit();
-		}
+		player.update(deltaSeconds);
 	}
 
 	/**
@@ -74,20 +77,13 @@ public class Game implements ApplicationListener {
 		worldCamera.begin(batch);
 		batch.begin();
 		{ // Draw world
-			for (int x = 0; x < 16; x++) {
-				for (int y = 0; y < 16; y++) {
-					batch.draw(spriteImage, x, y, 1, 1);
-				}
-			}
-			var m = worldCamera.mousePosition();
-			batch.draw(spriteImage, m.x-.5f, m.y-.5f, 1, 1);
+			player.draw(batch);
 		}
 		batch.end();
 
 		uiCamera.begin(batch);
 		batch.begin();
 		{ // Draw ui
-			font.draw(batch, "Hello, World!", 200, 200);
 		}
 		batch.end();
 	}
@@ -114,5 +110,10 @@ public class Game implements ApplicationListener {
 
 	@Override
 	public void resume() {
+	}
+
+	@Override
+	public Vector2i moveEntity(IEntity entity, Vector2i movement) {
+		return entity.getPosition().add(movement);
 	}
 }
