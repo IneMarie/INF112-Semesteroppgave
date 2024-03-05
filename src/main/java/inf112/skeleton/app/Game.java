@@ -9,15 +9,16 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.graphics.Texture;
+import inf112.skeleton.app.assets.Textures;
 import inf112.skeleton.app.geometry.Vector2i;
 import inf112.skeleton.app.world.IEntity;
 import inf112.skeleton.app.world.IWorld;
 import inf112.skeleton.app.world.Player;
+import inf112.skeleton.app.world.Tile;
 
 public class Game implements ApplicationListener, IWorld, Input.StateMachine {
 	private SpriteBatch batch;
 	private BitmapFont font;
-	private Texture spriteImage;
 	private Sound bellSound;
 	private CameraController2D worldCamera;
 	private CameraController2D uiCamera;
@@ -32,7 +33,6 @@ public class Game implements ApplicationListener, IWorld, Input.StateMachine {
 		font = new BitmapFont();
 		font.setColor(Color.WHITE);
 
-		spriteImage = new Texture(Gdx.files.internal("Dungeon Crawl Stone Soup Full/player/base/orc_male.png"));
 		bellSound = Gdx.audio.newSound(Gdx.files.internal("blipp.ogg"));
 		Gdx.graphics.setForegroundFPS(60);
 
@@ -49,7 +49,6 @@ public class Game implements ApplicationListener, IWorld, Input.StateMachine {
 		Input.stateMachine = this;
 		inputState = Input.State.GamePlay;
 	}
-
 	@Override
 	public void dispose() {
 		// Called at shutdown
@@ -57,8 +56,8 @@ public class Game implements ApplicationListener, IWorld, Input.StateMachine {
 
 		batch.dispose();
 		font.dispose();
-		spriteImage.dispose();
 		bellSound.dispose();
+		Textures.dispose();
 	}
 
 	/**
@@ -80,6 +79,7 @@ public class Game implements ApplicationListener, IWorld, Input.StateMachine {
 		batch.begin();
 		{ // Draw world
 			player.draw(batch);
+			Tile.Snake.draw(batch, Vector2.Zero);
 		}
 		batch.end();
 
