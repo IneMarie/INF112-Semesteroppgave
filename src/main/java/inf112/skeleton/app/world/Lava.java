@@ -9,14 +9,15 @@ import inf112.skeleton.app.assets.Textures;
 public class Lava {
   private int lavaStartValue; 
   private int lavaHeight; 
-  // private float lavaRiseSpeed; 
-  
+
   private float timeElapsed = 0; // Siden sist lavaen steg
   private final float lavaRiseTimer;
-  
-  private static final Texture texture = Textures.Lava.texture;
 
+  private Player player; 
+  private int gridHeight = 16; // IKKE HARDKOD FIKS SENERE TODO!
   private boolean reachedPlayerOrTop;
+
+  private static final Texture texture = Textures.Lava.texture;
     
   
   /**
@@ -24,11 +25,11 @@ public class Lava {
   * @param lavaStartValue - start posisjon til lava
   * @param lavaRiseSpeed - hvor raskt lavaen stiger
   */
-  public Lava(int lavaStartValue, float lavaRiseTimer) {
+  public Lava(int lavaStartValue, float lavaRiseTimer, Player player) {
     this.lavaStartValue = lavaStartValue;
     this.lavaHeight = 0;
     this.lavaRiseTimer = lavaRiseTimer;
-    // this.lavaRiseSpeed = lavaRiseSpeed; 1 rad om gangen TODO
+    this.player = player;
   } 
   
   /**
@@ -37,7 +38,12 @@ public class Lava {
   public void updateLava(float deltaSeconds) {
     // System.out.println("TEST lava update");
     timeElapsed += deltaSeconds;
-    riseLava();
+    if (playerLavaDeath() && !reachedPlayerOrTop){
+      reachedPlayerOrTop = true;
+      System.out.println("Spilleren døde av lava :(");
+    } else {
+      checkAndRiseLava();
+    }
   }
   
   /**
@@ -46,7 +52,7 @@ public class Lava {
   */
   public void draw(SpriteBatch batch) {
     for (int y = 0; y < lavaHeight; y++) {
-      for (int x = 0; x < 16; x++) { // TODO foreløpig 16x16 grid endre til variabler
+      for (int x = 0; x < gridHeight; x++) {
         batch.draw(texture, x, lavaStartValue + y, 1, 1);
       }
     }
@@ -65,21 +71,24 @@ public class Lava {
   public int getLavaHeight() {
     return lavaHeight;
   }
+
+  private boolean playerLavaDeath(){
+    return lavaStartValue <= player.getRow() && player.getRow() < lavaStartValue + lavaHeight;
+  }
   
   /**
-  * Gjør at lavaen stiger 
+  * Gjør at lavaen stiger dersom den er under kart høyden, og spilleren ikke er død
   */  
-  public void riseLava() {
+  public void checkAndRiseLava() {
     if (!reachedPlayerOrTop && timeElapsed >= lavaRiseTimer) {
       timeElapsed -= lavaRiseTimer;
-      if (lavaStartValue + lavaHeight < 16) { // Ikke hardkode TODO
+      if (lavaStartValue + lavaHeight < gridHeight){
         lavaHeight++;
         System.out.println("Lava høyde: " + lavaHeight);
       } else {
         reachedPlayerOrTop = true;
         System.out.println("Nådd toppen!");
-
-      }
+      } 
     }
   }
 }

@@ -49,7 +49,7 @@ public class Game implements ApplicationListener, IWorld, Input.StateMachine {
 		player = new Player(new Vector2i(0, 0), this);
 
     // Endre "lavaRiseTimer" variablen for å endre hvor mange sekund det tar før lavaen stiger :)
-    lava = new Lava(0, 10);
+    lava = new Lava(0, 5, player);
 
 		Input.stateMachine = this;
 		inputState = Input.State.GamePlay;
