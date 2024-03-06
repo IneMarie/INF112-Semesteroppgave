@@ -48,7 +48,8 @@ public class Game implements ApplicationListener, IWorld, Input.StateMachine {
 
 		player = new Player(new Vector2i(0, 0), this);
 
-    lava = new Lava(-1, 1);
+    // Endre "lavaRiseTimer" variablen for å endre hvor mange sekund det tar før lavaen stiger :)
+    lava = new Lava(0, 10);
 
 		Input.stateMachine = this;
 		inputState = Input.State.GamePlay;
@@ -72,9 +73,8 @@ public class Game implements ApplicationListener, IWorld, Input.StateMachine {
 		// Don't handle input this way – use event handlers!
 		player.update(deltaSeconds);
 
-    if (Gdx.input.isKeyJustPressed(com.badlogic.gdx.Input.Keys.L)) { // TESTING TODO
-			lava.updateLava();
-		}
+    lava.updateLava(deltaSeconds);
+		
 	}
 
 	/**
@@ -132,4 +132,9 @@ public class Game implements ApplicationListener, IWorld, Input.StateMachine {
 	public Input.State getState() {
 		return inputState;
 	}
+
+  // Getter metode for batch
+  public SpriteBatch getBatch() {
+    return batch;
+  }
 }

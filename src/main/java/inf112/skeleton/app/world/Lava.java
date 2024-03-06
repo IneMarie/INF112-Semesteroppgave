@@ -3,37 +3,43 @@ package inf112.skeleton.app.world;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import inf112.skeleton.app.world.Tile;
 import inf112.skeleton.app.assets.Textures;
-import inf112.skeleton.app.world.Player;
 
 
 public class Lava {
   private int lavaStartValue; 
   private int lavaHeight; 
-  private float lavaRiseSpeed; 
+  // private float lavaRiseSpeed; 
+  
+  private float timeElapsed = 0; // Siden sist lavaen steg
+  private final float lavaRiseTimer;
+  
   private static final Texture texture = Textures.Lava.texture;
 
+  private boolean reachedPlayerOrTop;
+    
   
   /**
   * Oppretter lavaen
   * @param lavaStartValue - start posisjon til lava
   * @param lavaRiseSpeed - hvor raskt lavaen stiger
   */
-  public Lava(int lavaStartValue, float lavaRiseSpeed) {
+  public Lava(int lavaStartValue, float lavaRiseTimer) {
     this.lavaStartValue = lavaStartValue;
-    this.lavaHeight = 1;
-    this.lavaRiseSpeed = lavaRiseSpeed; // 1 rad om gangen TODO
+    this.lavaHeight = 0;
+    this.lavaRiseTimer = lavaRiseTimer;
+    // this.lavaRiseSpeed = lavaRiseSpeed; 1 rad om gangen TODO
   } 
   
   /**
   * Oppdaterer lavaen
   */
-  public void updateLava() {
+  public void updateLava(float deltaSeconds) {
     // System.out.println("TEST lava update");
+    timeElapsed += deltaSeconds;
     riseLava();
   }
-
+  
   /**
   * Tegner lavaen
   * @param spriteBatch 
@@ -45,28 +51,35 @@ public class Lava {
       }
     }
   }
-
+  
   /**
   * Henter ut y verdien til lavaens startposisjon
   */
-  public int getLavaStartY() {
+  public int getLavaStartValue() {
     return lavaStartValue;
   }
-
+  
   /**
   * Henter ut høyden til lavaen
   */
   public int getLavaHeight() {
     return lavaHeight;
   }
-
+  
   /**
-  * Gjør at lavaen stiger
-  */
-  private void riseLava() {
-    //Sjekker at den ikker er større en vinduet
-    if (lavaStartValue + lavaHeight < Gdx.graphics.getHeight()) {
-      lavaHeight += lavaRiseSpeed;
+  * Gjør at lavaen stiger 
+  */  
+  public void riseLava() {
+    if (!reachedPlayerOrTop && timeElapsed >= lavaRiseTimer) {
+      timeElapsed -= lavaRiseTimer;
+      if (lavaStartValue + lavaHeight < 16) { // Ikke hardkode TODO
+        lavaHeight++;
+        System.out.println("Lava høyde: " + lavaHeight);
+      } else {
+        reachedPlayerOrTop = true;
+        System.out.println("Nådd toppen!");
+
+      }
     }
   }
 }
