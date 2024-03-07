@@ -30,6 +30,11 @@ public class Player implements IEntity {
         return position;
     }
 
+    public int getRow() {
+        return position.y();
+    }
+
+
 
     private static final float secondsToMove = 0.1f;
     private boolean isMoving = false;
