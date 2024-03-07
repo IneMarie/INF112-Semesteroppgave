@@ -3,7 +3,10 @@ package inf112.skeleton.app.world;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
+import inf112.skeleton.app.Game;
 import inf112.skeleton.app.assets.Textures;
+import inf112.skeleton.app.screens.GameOver;
 
 
 public class Lava {
@@ -14,33 +17,37 @@ public class Lava {
   private final float lavaRiseTimer;
 
   private Player player; 
+  private Game game;
   private int gridHeight = 16; // IKKE HARDKOD FIKS SENERE TODO!
   private boolean reachedPlayerOrTop;
 
   private static final Texture texture = Textures.Lava.texture;
-    
   
   /**
   * Oppretter lavaen
   * @param lavaStartValue - start posisjon til lava
-  * @param lavaRiseSpeed - hvor raskt lavaen stiger
+  * @param lavaRiseTimer - hvor mange sekunder det tar før lavaen stiger
+  * @param player - for å sjekke om lava og player er på samme rad
+  * @param game - gjør det mulig å endre screen når man dør
   */
-  public Lava(int lavaStartValue, float lavaRiseTimer, Player player) {
+  public Lava(int lavaStartValue, float lavaRiseTimer, Player player, Game game) {
     this.lavaStartValue = lavaStartValue;
     this.lavaHeight = 0;
     this.lavaRiseTimer = lavaRiseTimer;
     this.player = player;
+    this.game = game;
+
   } 
   
   /**
-  * Oppdaterer lavaen
+  * Oppdaterer lavaen, så lenge spilleren lever
   */
   public void updateLava(float deltaSeconds) {
-    // System.out.println("TEST lava update");
     timeElapsed += deltaSeconds;
     if (playerLavaDeath() && !reachedPlayerOrTop){
       reachedPlayerOrTop = true;
       System.out.println("Spilleren døde av lava :(");
+      game.setGameOver();
     } else {
       checkAndRiseLava();
     }

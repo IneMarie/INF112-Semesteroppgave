@@ -11,6 +11,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.graphics.Texture;
 import inf112.skeleton.app.assets.Textures;
 import inf112.skeleton.app.geometry.Vector2i;
+import inf112.skeleton.app.screens.GameOver;
 import inf112.skeleton.app.world.IEntity;
 import inf112.skeleton.app.world.IWorld;
 import inf112.skeleton.app.world.Lava;
@@ -26,6 +27,8 @@ public class Game implements ApplicationListener, IWorld, Input.StateMachine {
 	private Input.State inputState;
 	Player player;
   private Lava lava;
+  // ScreenManager screenManager;
+  boolean playerIsAlive = true;
 
 	@Override
 	public void create() {
@@ -48,8 +51,9 @@ public class Game implements ApplicationListener, IWorld, Input.StateMachine {
 
 		player = new Player(new Vector2i(0, 0), this);
 
-    // Endre "lavaRiseTimer" variablen for å endre hvor mange sekund det tar før lavaen stiger :)
-    lava = new Lava(0, 5, player);
+    // Endre "lavaRiseTimer" variablen for å endre hvor mange sekunder det tar før lavaen stiger :)
+    lava = new Lava(0, 5, player, this);
+    //screenManager = new screenManager();
 
 		Input.stateMachine = this;
 		inputState = Input.State.GamePlay;
@@ -71,10 +75,11 @@ public class Game implements ApplicationListener, IWorld, Input.StateMachine {
 	 */
 	public void update(float deltaSeconds) {
 		// Don't handle input this way – use event handlers!
-		player.update(deltaSeconds);
-
-    lava.updateLava(deltaSeconds);
 		
+    if (playerIsAlive){
+      player.update(deltaSeconds);
+      lava.updateLava(deltaSeconds);
+    }
 	}
 
 	/**
@@ -136,5 +141,11 @@ public class Game implements ApplicationListener, IWorld, Input.StateMachine {
   // Getter metode for batch
   public SpriteBatch getBatch() {
     return batch;
+  }
+
+  public void setGameOver(){
+    playerIsAlive = false;
+    //ScreenManager.setScreen(new GameOver(this)); 
+
   }
 }
