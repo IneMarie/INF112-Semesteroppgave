@@ -2,152 +2,124 @@ package inf112.skeleton.app;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.ScreenUtils;
-import com.badlogic.gdx.graphics.Texture;
 import inf112.skeleton.app.assets.Textures;
-import inf112.skeleton.app.geometry.Vector2i;
-import inf112.skeleton.app.world.IEntity;
-import inf112.skeleton.app.world.IWorld;
-import inf112.skeleton.app.world.Lava;
-import inf112.skeleton.app.world.Player;
-import inf112.skeleton.app.world.Tile;
-import inf112.skeleton.app.world.Boulder;
+import inf112.skeleton.app.world.World;
 
 
-public class BlockGame implements ApplicationListener, IWorld, Input.StateMachine {
-	private SpriteBatch batch;
-	private BitmapFont font;
-	private Sound bellSound;
-	private CameraController2D worldCamera;
-	private CameraController2D uiCamera;
-	private Input.State inputState;
-	Player player;
-	Boulder boulder;
-  private Lava lava;
-  // ScreenManager screenManager;
-  boolean playerIsAlive = true;
+public class BlockGame implements ApplicationListener, Input.StateMachine {
+    private SpriteBatch batch;
+    private CameraController2D worldCamera;
+    private CameraController2D uiCamera;
+    private Input.State inputState;
+    private World world;
 
-	@Override
-	public void create() {
-		// Called at startup
+    @Override
+    public void create() {
+        // Called at startup
 
-		batch = new SpriteBatch();
-		font = new BitmapFont();
-		font.setColor(Color.WHITE);
+        batch = new SpriteBatch();
+        Gdx.graphics.setForegroundFPS(60);
 
-		bellSound = Gdx.audio.newSound(Gdx.files.internal("blipp.ogg"));
-		Gdx.graphics.setForegroundFPS(60);
+        worldCamera = new CameraController2D(16);
+        worldCamera.screenAnchor.x = 0f;
+        worldCamera.screenAnchor.y = 0f;
 
-		worldCamera = new CameraController2D(16);
-		worldCamera.screenAnchor.x = 0f;
-		worldCamera.screenAnchor.y = 0f;
+        uiCamera = new CameraController2D(720);
+        uiCamera.screenAnchor.x = 0f;
+        uiCamera.screenAnchor.y = 0f;
 
-		uiCamera = new CameraController2D(720);
-		uiCamera.screenAnchor.x = 0f;
-		uiCamera.screenAnchor.y = 0f;
 
-		player = new Player(new Vector2i(0, 0), this);
-		boulder = new Boulder(new Vector2i(2, 2), this);
+        // Endre "lavaRiseTimer" variablen for å endre hvor mange sekunder det tar før lavaen stiger :)
+        // lava = new Lava(0, 5, player, this);
 
-    // Endre "lavaRiseTimer" variablen for å endre hvor mange sekunder det tar før lavaen stiger :)
-    lava = new Lava(0, 5, player, this);
-    
-		Input.stateMachine = this;
-		inputState = Input.State.GamePlay;
-	}
-	@Override
-	public void dispose() {
-		// Called at shutdown
-		// Unload assets
+        Input.stateMachine = this;
+        inputState = Input.State.GamePlay;
 
-		batch.dispose();
-		font.dispose();
-		bellSound.dispose();
-		Textures.dispose();
-	}
-
-	/**
-	 * Updates the game state before drawing.
-	 * @param deltaSeconds Time passed since last frame.
-	 */
-	public void update(float deltaSeconds) {
-		// Don't handle input this way – use event handlers!
-		
-    if (playerIsAlive){
-      player.update(deltaSeconds);
-      lava.updateLava(deltaSeconds);
+        world = new World(this);
     }
-	}
 
-	/**
-	 * Called once per frame after update.
-	 */
-	public void draw() {
-		ScreenUtils.clear(Color.BLACK);
+    @Override
+    public void dispose() {
+        // Called at shutdown
+        // Unload assets
 
-		worldCamera.begin(batch);
-		batch.begin();
-		{ // Draw world
-			player.draw(batch);
-			boulder.draw(batch);
-			Tile.Snake.draw(batch, Vector2.Zero);
-      lava.draw(batch);
-		}
-		batch.end();
+        batch.dispose();
+        Textures.dispose();
+    }
 
-		uiCamera.begin(batch);
-		batch.begin();
-		{ // Draw ui
-		}
-		batch.end();
-	}
+    /**
+     * Updates the game state before drawing.
+     *
+     * @param deltaSeconds Time passed since last frame.
+     */
+    public void update(float deltaSeconds) {
+        // Don't handle input this way – use event handlers!
+        world.update(deltaSeconds);
 
-	/**
-	 * The main loop of the game.
-	 * Gets called every frame by libGDX.
-	 */
-	@Override
-	public void render() {
-		update(Gdx.graphics.getDeltaTime());
-		draw();
-	}
+//        if (playerIsAlive) {
+//            player.update(deltaSeconds);
+//            lava.updateLava(deltaSeconds);
+//        }
+    }
 
-	@Override
-	public void resize(int width, int height) {
-		worldCamera.onResize(width, height);
-		uiCamera.onResize(width, height);
-	}
+    /**
+     * Called once per frame after update.
+     */
+    public void draw() {
+        ScreenUtils.clear(Color.BLACK);
 
-	@Override
-	public void pause() {
-	}
+        worldCamera.begin(batch);
+        batch.begin();
+        { // Draw world
+            world.draw(batch);
+            // lava.draw(batch);
+        }
+        batch.end();
 
-	@Override
-	public void resume() {
-	}
+        uiCamera.begin(batch);
+        batch.begin();
+        { // Draw ui
+        }
+        batch.end();
+    }
 
-	@Override
-	public Vector2i moveEntity(IEntity entity, Vector2i movement) {
-		return entity.getPosition().add(movement);
-	}
+    /**
+     * The main loop of the game.
+     * Gets called every frame by libGDX.
+     */
+    @Override
+    public void render() {
+        update(Gdx.graphics.getDeltaTime());
+        draw();
+    }
 
-	@Override
-	public Input.State getState() {
-		return inputState;
-	}
+    @Override
+    public void resize(int width, int height) {
+        worldCamera.onResize(width, height);
+        uiCamera.onResize(width, height);
+    }
 
-  // Getter metode for batch
-  public SpriteBatch getBatch() {
-    return batch;
-  }
+    @Override
+    public void pause() {
+    }
 
-  public void setGameOver(){
-    playerIsAlive = false;
-    //ScreenManager.setScreen(new GameOverScreen(this));
-  }
+    @Override
+    public void resume() {
+    }
+
+    @Override
+    public Input.State getState() {
+        return inputState;
+    }
+
+    // Getter metode for batch
+    public SpriteBatch getBatch() {
+        return batch;
+    }
+
+    public void setGameOver() {
+    }
 }
