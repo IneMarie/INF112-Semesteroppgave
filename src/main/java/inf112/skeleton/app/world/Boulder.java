@@ -1,28 +1,25 @@
 package inf112.skeleton.app.world;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-
-import inf112.skeleton.app.assets.Textures;
+import inf112.skeleton.app.animation.PositionLerp;
 import inf112.skeleton.app.geometry.Vector2i;
 
 
 // TODO: move-method
 
-public class Boulder implements IEntity{
+public class Boulder implements IEntity {
 
 
-    private Vector2 screenPosition;
     private Vector2i position;
     private IWorld world;
-    private static final Texture texture = Textures.Boulder.texture;
+    private PositionLerp positionLerp;
 
 
     public Boulder(Vector2i position, IWorld world) {
         this.position = position;
         this.world = world;
-        screenPosition = new Vector2(position.x(), position.y());
+        positionLerp = new PositionLerp(this);
     }
 
 
@@ -36,20 +33,21 @@ public class Boulder implements IEntity{
     }
 
 
-
     public void draw(SpriteBatch sb) {
-        sb.draw(texture, screenPosition.x, screenPosition.y, 1, 1);
+        Vector2 v2 = positionLerp.getLerpedPosition();
+        sb.draw(Tile.Boulder.texture, v2.x, v2.y, 1, 1);
     }
 
 
     @Override
     public Tile getTile() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getTile'");
+        return Tile.Boulder;
+    }
+
+    @Override
+    public void update(float deltaSeconds) {
+        positionLerp.update(deltaSeconds);
     }
 
 
-
-    
-    
 }
