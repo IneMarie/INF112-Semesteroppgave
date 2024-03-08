@@ -1,12 +1,10 @@
 package inf112.skeleton.app.world;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import inf112.skeleton.app.Game;
+import inf112.skeleton.app.BlockGame;
 import inf112.skeleton.app.assets.Textures;
-import inf112.skeleton.app.screens.GameOver;
 
 
 public class Lava {
@@ -17,20 +15,20 @@ public class Lava {
   private final float lavaRiseTimer;
 
   private Player player; 
-  private Game game;
+  private BlockGame game;
   private int gridHeight = 16; // IKKE HARDKOD FIKS SENERE TODO!
   private boolean reachedPlayerOrTop;
 
   private static final Texture texture = Textures.Lava.texture;
   
   /**
-  * Oppretter lavaen
+  * Lager et lava objekt som gradvis stiger oppover
   * @param lavaStartValue - start posisjon til lava
   * @param lavaRiseTimer - hvor mange sekunder det tar før lavaen stiger
   * @param player - for å sjekke om lava og player er på samme rad
   * @param game - gjør det mulig å endre screen når man dør
   */
-  public Lava(int lavaStartValue, float lavaRiseTimer, Player player, Game game) {
+  public Lava(int lavaStartValue, float lavaRiseTimer, Player player, BlockGame game) {
     this.lavaStartValue = lavaStartValue;
     this.lavaHeight = 0;
     this.lavaRiseTimer = lavaRiseTimer;

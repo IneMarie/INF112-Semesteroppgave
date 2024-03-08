@@ -11,7 +11,6 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.graphics.Texture;
 import inf112.skeleton.app.assets.Textures;
 import inf112.skeleton.app.geometry.Vector2i;
-import inf112.skeleton.app.screens.GameOver;
 import inf112.skeleton.app.world.IEntity;
 import inf112.skeleton.app.world.IWorld;
 import inf112.skeleton.app.world.Lava;
@@ -20,7 +19,7 @@ import inf112.skeleton.app.world.Tile;
 import inf112.skeleton.app.world.Boulder;
 
 
-public class Game implements ApplicationListener, IWorld, Input.StateMachine {
+public class BlockGame implements ApplicationListener, IWorld, Input.StateMachine {
 	private SpriteBatch batch;
 	private BitmapFont font;
 	private Sound bellSound;
@@ -57,8 +56,7 @@ public class Game implements ApplicationListener, IWorld, Input.StateMachine {
 
     // Endre "lavaRiseTimer" variablen for å endre hvor mange sekunder det tar før lavaen stiger :)
     lava = new Lava(0, 5, player, this);
-    //screenManager = new screenManager();
-
+    
 		Input.stateMachine = this;
 		inputState = Input.State.GamePlay;
 	}
@@ -150,7 +148,6 @@ public class Game implements ApplicationListener, IWorld, Input.StateMachine {
 
   public void setGameOver(){
     playerIsAlive = false;
-    //ScreenManager.setScreen(new GameOver(this)); 
-
+    //ScreenManager.setScreen(new GameOverScreen(this));
   }
 }
