@@ -10,16 +10,16 @@ import inf112.skeleton.app.geometry.Vector2i;
 
 // TODO: move-method
 
-public class Box implements IEntity{
+public class Boulder implements IEntity{
 
 
     private Vector2 screenPosition;
     private Vector2i position;
     private IWorld world;
-    private static final Texture texture = Textures.Rock.texture;
+    private static final Texture texture = Textures.Boulder.texture;
 
 
-    public Box(Vector2i position, IWorld world) {
+    public Boulder(Vector2i position, IWorld world) {
         this.position = position;
         this.world = world;
         screenPosition = new Vector2(position.x(), position.y());

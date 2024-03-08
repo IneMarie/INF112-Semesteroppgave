@@ -9,7 +9,7 @@ public enum Textures {
     Wall("Dungeon Crawl Stone Soup Full/dungeon/wall/brick_brown_2.png"),
     Lava("Dungeon Crawl Stone Soup Full/dungeon/floor/lava_2.png"),
     Snake("Dungeon Crawl Stone Soup Full/monster/animals/snake.png"),
-    Rock("rock placeholder.png");
+    Boulder("rock placeholder.png");
     
 
     public final Texture texture;
