@@ -9,7 +9,8 @@ public enum Tile {
     Floor(Textures.Floor.texture),
     Wall(Textures.Wall.texture, Flag.Solid),
     Lava(Textures.Lava.texture, Flag.Damaging),
-    Snake(Textures.Snake.texture, Flag.Damaging, Flag.Solid);
+    Snake(Textures.Snake.texture, Flag.Damaging, Flag.Solid),
+    Boulder(Textures.Boulder.texture, Flag.Solid);
 
     public enum Flag {
         Solid,
