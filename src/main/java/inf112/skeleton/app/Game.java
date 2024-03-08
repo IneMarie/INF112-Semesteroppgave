@@ -17,6 +17,8 @@ import inf112.skeleton.app.world.IWorld;
 import inf112.skeleton.app.world.Lava;
 import inf112.skeleton.app.world.Player;
 import inf112.skeleton.app.world.Tile;
+import inf112.skeleton.app.world.Box;
+
 
 public class Game implements ApplicationListener, IWorld, Input.StateMachine {
 	private SpriteBatch batch;
@@ -26,6 +28,7 @@ public class Game implements ApplicationListener, IWorld, Input.StateMachine {
 	private CameraController2D uiCamera;
 	private Input.State inputState;
 	Player player;
+	Box box;
   private Lava lava;
   // ScreenManager screenManager;
   boolean playerIsAlive = true;
@@ -50,6 +53,7 @@ public class Game implements ApplicationListener, IWorld, Input.StateMachine {
 		uiCamera.screenAnchor.y = 0f;
 
 		player = new Player(new Vector2i(0, 0), this);
+		box = new Box(new Vector2i(2, 2), this);
 
     // Endre "lavaRiseTimer" variablen for å endre hvor mange sekunder det tar før lavaen stiger :)
     lava = new Lava(0, 5, player, this);
@@ -92,6 +96,7 @@ public class Game implements ApplicationListener, IWorld, Input.StateMachine {
 		batch.begin();
 		{ // Draw world
 			player.draw(batch);
+			box.draw(batch);
 			Tile.Snake.draw(batch, Vector2.Zero);
       lava.draw(batch);
 		}
