@@ -79,4 +79,11 @@ public class Player implements IEntity {
         sb.draw(texture, screenPosition.x, screenPosition.y, 1, 1);
     }
 
+
+    @Override
+    public Tile getTile() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getTile'");
+    }
+
 }
