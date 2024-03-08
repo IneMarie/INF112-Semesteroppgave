@@ -65,6 +65,7 @@ public class Player implements IEntity {
         }
 
         var new_position = world.moveEntity(this, movement);
+        
 
         if (!position.equals(new_position)) {
             secondsMoved = 0.0f;
@@ -72,6 +73,8 @@ public class Player implements IEntity {
             moveFrom.set(screenPosition);
             moveTo.set(new_position.x(), new_position.y());
             position = new_position;
+            // Prints position in terminal for each move player makes (testing), TODO: remove when finished!
+            System.out.println(position);
         }
     }
 
