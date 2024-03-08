@@ -42,6 +42,13 @@ public class Boulder implements IEntity{
     }
 
 
+    @Override
+    public Tile getTile() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getTile'");
+    }
+
+
 
     
     
