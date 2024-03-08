@@ -10,7 +10,7 @@ public enum Tile {
     Wall(Textures.Wall.texture, Flag.Solid),
     Lava(Textures.Lava.texture, Flag.Damaging),
     Snake(Textures.Snake.texture, Flag.Damaging, Flag.Solid),
-    Boulder(Textures.Boulder.texture, Flag.Solid);
+    Boulder(Textures.Boulder.texture, Flag.Solid, Flag.Movable);
 
     public enum Flag {
         Solid,
@@ -26,7 +26,7 @@ public enum Tile {
             return 1L << ordinal();
         }
 
-        static private long join(Flag ... flags) {
+        static private long join(Flag... flags) {
             long v = 0L;
             for (var flag : flags) {
                 v |= flag.val();
@@ -38,7 +38,7 @@ public enum Tile {
     public final Texture texture;
     private final long flags;
 
-    Tile(Texture texture, Flag ... flags) {
+    Tile(Texture texture, Flag... flags) {
         this.texture = texture;
         this.flags = Flag.join(flags);
     }
@@ -47,7 +47,7 @@ public enum Tile {
         return (this.flags & flag.val()) != 0;
     }
 
-    public boolean isAllOf(Flag ... flags) {
+    public boolean isAllOf(Flag... flags) {
         for (var f : flags) {
             if (!is(f)) {
                 return false;
@@ -56,7 +56,7 @@ public enum Tile {
         return true;
     }
 
-    public boolean isOnly(Flag ... flags) {
+    public boolean isOnly(Flag... flags) {
         long v = this.flags;
         for (var flag : flags) {
             v ^= flag.val();
@@ -64,7 +64,7 @@ public enum Tile {
         return v == 0L;
     }
 
-    public boolean isAnyOf(Flag ... flags) {
+    public boolean isAnyOf(Flag... flags) {
         for (var f : flags) {
             if (is(f)) {
                 return true;
@@ -73,9 +73,10 @@ public enum Tile {
         return false;
     }
 
-    public boolean isNoneOf(Flag ... flags) {
+    public boolean isNoneOf(Flag... flags) {
         return !isAnyOf(flags);
     }
+
     public void draw(SpriteBatch sb, Vector2 position, Vector2 origin) {
         sb.draw(texture, position.x - origin.x, position.y - origin.y, 1, 1);
     }
