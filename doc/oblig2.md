@@ -21,15 +21,15 @@ Trenger dere andre roller? Skriv ned noen linjer om hva de ulike rollene faktisk
 - Vi kan kanskje være bedre på å definere mer konkrete arbeidsoppgaver slik at man alltid vet hva man kan jobbe med.
 
 **Under vurdering vil det vektlegges at alle bidrar til kodebasen. Hvis det er stor forskjell i hvem som committer, må dere legge ved en kort forklaring for hvorfor det er sånn. Husk å committe alt. (Også designfiler)**
-- Commitene som blir pushet på fredager (og noen tirsdager der vi har ekstra gruppetimer) er ofte gjort i sammarbeid. Feks til oblig1 var det kun Ine og Ivar som hadde commits, noe av dette var på grunn av at man diskuterte oppgavene muntlig sammen, mens en av oss skrev ned det om ble sagt. 
+- Commitene som blir pushet på fredager (og noen tirsdager der vi har ekstra gruppetimer) er ofte gjort i samarbeid. Feks til oblig1 var det kun Ine og Ivar som hadde commits, noe av dette var på grunn av at man diskuterte oppgavene muntlig sammen, mens kun en skrev ned det om ble sagt. 
 
-Referat fra møter siden forrige leveranse skal legges ved (mange av punktene over er typisk ting som havner i referat):
+**Referat fra møter siden forrige leveranse skal legges ved (mange av punktene over er typisk ting som havner i referat):**
 https://docs.google.com/document/d/10a05Fu1_dx0Y_XaLF6ZEFuFKvsOZK4iNWEVNr36HerU/edit 
 
 **Bli enige om maks tre forbedringspunkter fra retrospektivet, som skal følges opp under neste sprint.**
 - Bli bedre til å gi mer konkrete oppgaver, slik at alle alltid har noe å jobbe med.
 - Definere mer interfaces (try-catch, osv)
-- Mer kommentarer i koden -- bedre dokumentasjon for funksjoner
+- Mer kommentarer i koden og generelt bedre dokumentasjon for funksjoner
 
 
 ## Krav og spesifikasjon
