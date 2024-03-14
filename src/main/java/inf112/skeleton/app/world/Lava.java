@@ -50,10 +50,6 @@ public class Lava {
     }
   }
   
-  /**
-  * Tegner lavaen
-  * @param spriteBatch 
-  */
   public void draw(SpriteBatch batch) {
     for (int y = 0; y < lavaHeight; y++) {
       for (int x = 0; x < gridHeight; x++) {
@@ -77,7 +73,7 @@ public class Lava {
   }
 
   private boolean playerLavaDeath(){
-    return lavaStartValue <= player.getRow() && player.getRow() < lavaStartValue + lavaHeight;
+    return (lavaStartValue <= player.getRow() && player.getRow() < lavaStartValue + lavaHeight) || lavaStartValue > player.getRow();
   }
   
   /**
