@@ -39,7 +39,7 @@ public class TitleScreen implements Screen{
     font.setColor(Color.WHITE);
     float x = Gdx.graphics.getWidth() / 2f - 100;
     float y = Gdx.graphics.getHeight() / 2f;
-    font.draw(batch, "Press Enter to play", x, y);
+    font.draw(batch, "Press ENTER to play", x, y);
     batch.end();
   }
   

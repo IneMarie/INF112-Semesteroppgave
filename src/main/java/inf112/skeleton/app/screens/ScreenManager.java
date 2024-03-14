@@ -36,6 +36,12 @@ public class ScreenManager extends Game {
   public void showGameOverScreen() {
       setScreen(gameOverScreen);
   }
+
+  public void restartGame(){
+    gameLogic = new GameLogic(this);
+    gameScreen = new GameScreen(this, gameLogic);
+    setScreen(gameScreen);
+  }
 }
 
 // Inspirasjon fra https://happycoding.io/tutorials/libgdx/game-screens#the-libgdx-approach

@@ -34,8 +34,16 @@ public class GameOverScreen implements Screen{
     font.setColor(Color.WHITE);
     float x = Gdx.graphics.getWidth() / 2f - 100;
     float y = Gdx.graphics.getHeight() / 2f;
-    font.draw(batch, "Denne teksten e cursed", x, y); // Teksten e for liten uansett ka eg gjør TODO
+    font.draw(batch, "Denne teksten e cursed -- FIKS", x, y); // Teksten e for liten uansett ka eg gjør TODO
+    float secondLineY = y - font.getLineHeight();
+    font.draw(batch, "Press ENTER to try again!", x, secondLineY);
+
     batch.end();
+
+    // Sjekker om Enter
+    if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
+      screenManager.restartGame();
+    }
   }
   
   @Override
