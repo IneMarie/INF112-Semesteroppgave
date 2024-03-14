@@ -1,11 +1,7 @@
 package inf112.skeleton.app.screens;
 
-import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-
 import inf112.skeleton.app.GameLogic;
 
 public class ScreenManager extends Game {
