@@ -2,23 +2,21 @@ package inf112.skeleton.app.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import inf112.skeleton.app.GameLogic;
-
 
 public class GameOverScreen implements Screen{
   private final ScreenManager screenManager; 
-  private final SpriteBatch batch;  
+  private final BitmapFont font;
+  private final SpriteBatch batch; 
   
   public GameOverScreen(ScreenManager screenManager){
     this.screenManager = screenManager;
+    font = new BitmapFont();
     batch = new SpriteBatch();
   }
   
@@ -31,10 +29,13 @@ public class GameOverScreen implements Screen{
     Gdx.gl.glClearColor(1, 0, 0, 1);
     Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-    // Sjekker om Enter
-    if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
-      System.out.println("Current screen: GameOverScreen");
-    }
+    // Tegner tekst
+    batch.begin();
+    font.setColor(Color.WHITE);
+    float x = Gdx.graphics.getWidth() / 2f - 100;
+    float y = Gdx.graphics.getHeight() / 2f;
+    font.draw(batch, "Denne teksten e cursed", x, y); // Teksten e for liten uansett ka eg gjør TODO
+    batch.end();
   }
   
   @Override
@@ -55,6 +56,7 @@ public class GameOverScreen implements Screen{
   
   @Override
   public void dispose() {
+    font.dispose();
     batch.dispose();
   }
 }
