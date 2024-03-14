@@ -3,7 +3,7 @@ package inf112.skeleton.app.world;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import inf112.skeleton.app.BlockGame;
+import inf112.skeleton.app.GameLogic;
 import inf112.skeleton.app.assets.Textures;
 
 
@@ -15,7 +15,7 @@ public class Lava {
   private final float lavaRiseTimer;
 
   private Player player; 
-  private BlockGame game;
+  private GameLogic game;
   private int gridHeight = 16; // IKKE HARDKOD FIKS SENERE TODO!
   private boolean reachedPlayerOrTop;
 
@@ -28,7 +28,7 @@ public class Lava {
   * @param player - for å sjekke om lava og player er på samme rad
   * @param game - gjør det mulig å endre screen når man dør
   */
-  public Lava(int lavaStartValue, float lavaRiseTimer, Player player, BlockGame game) {
+  public Lava(int lavaStartValue, float lavaRiseTimer, Player player, GameLogic game) {
     this.lavaStartValue = lavaStartValue;
     this.lavaHeight = 0;
     this.lavaRiseTimer = lavaRiseTimer;
@@ -44,7 +44,6 @@ public class Lava {
     timeElapsed += deltaSeconds;
     if (playerLavaDeath() && !reachedPlayerOrTop){
       reachedPlayerOrTop = true;
-      System.out.println("Spilleren døde av lava :(");
       game.setGameOver();
     } else {
       checkAndRiseLava();
