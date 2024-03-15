@@ -1,8 +1,8 @@
 package inf112.skeleton.app.world;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import inf112.skeleton.app.BlockGame;
 import inf112.skeleton.app.geometry.Vector2i;
+import inf112.skeleton.app.screens.GameScreen;
 import jdk.jshell.spi.ExecutionControl;
 
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ public class World implements IWorld {
         this.map = map;
     }
 
-    public World(BlockGame game) {
+    public World(GameScreen game) {
         // TODO remove this. In the future, a world is created by a factory interpreting some map data.
         this.player = new Player(new Vector2i(0, 0), this);
         this.entities = new ArrayList<>();
