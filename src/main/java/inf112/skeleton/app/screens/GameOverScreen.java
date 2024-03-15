@@ -43,6 +43,7 @@ public class GameOverScreen implements Screen{
     // Sjekker om Enter
     if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
       screenManager.restartGame();
+      screenManager.showGameScreen();
     }
   }
   

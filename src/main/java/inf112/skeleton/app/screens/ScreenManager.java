@@ -10,37 +10,47 @@ public class ScreenManager extends Game {
   private Screen gameScreen;
   private Screen gameOverScreen;
   private GameLogic gameLogic;
-
-
+  
   @Override
   public void create() {
-      // Oppretter screens
-      titleScreen = new TitleScreen(this);
-      gameLogic = new GameLogic(this);
-      gameScreen = new GameScreen(this, gameLogic);
-      gameOverScreen = new GameOverScreen(this);
-
-      // ---- VIKTIG FOR TESTING ----
-      // Bestem hvilken screen man begynner på 
-      setScreen(titleScreen);
+    
+    // Oppretter screens
+    restartGame();
+    titleScreen = new TitleScreen(this);
+    gameOverScreen = new GameOverScreen(this);
+    
+    // ---- VIKTIG FOR TESTING ----
+    // Bestem hvilken screen man begynner på 
+    setScreen(titleScreen);
   }
-
+  
+  /**
+  * Bytter til titleScreen
+  */
   public void showTitleScreen() {
-      setScreen(titleScreen);
+    setScreen(titleScreen);
   }
-
+  
+  /**
+  * Bytter til gameScreen
+  */
   public void showGameScreen() {
-      setScreen(gameScreen);
+    setScreen(gameScreen);
   }
-
+  
+  /**
+  * Bytter til gameOverScreen
+  */
   public void showGameOverScreen() {
-      setScreen(gameOverScreen);
+    setScreen(gameOverScreen);
   }
-
+  
+  /** 
+  * Starter et nytt spill
+  */
   public void restartGame(){
     gameLogic = new GameLogic(this);
     gameScreen = new GameScreen(this, gameLogic);
-    setScreen(gameScreen);
   }
 }
 
