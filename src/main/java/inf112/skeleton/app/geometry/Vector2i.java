@@ -1,5 +1,6 @@
 package inf112.skeleton.app.geometry;
 
+// TODO maybe make this mutable and reuse them in the future.
 public record Vector2i(int x, int y) {
 
     public Vector2i add(Vector2i other) {
