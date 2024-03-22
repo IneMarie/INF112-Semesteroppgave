@@ -25,10 +25,6 @@ public class World implements IWorld {
         // TODO remove this. In the future, a world is created by a factory interpreting some map data.
         this.player = new Player(new Vector2i(0, 0), this);
         this.entities = new ArrayList<>();
-        this.entities.add(new Boulder(new Vector2i(5, 5), this));
-        this.entities.add(new Boulder(new Vector2i(6, 5), this));
-        this.entities.add(new Boulder(new Vector2i(7, 5), this));
-        this.entities.add(new Wall(new Vector2i(8, 5)));
         this.map = new Map();
         this.lava = new Lava(0, 5, this.player, game);
     }
@@ -51,7 +47,7 @@ public class World implements IWorld {
         IEntity b = getEntityAt(new_pos);
         Tile map_tile = Tile.Floor;
         try { // TODO THIS SHOULD BE REMOVED WHEN MAP IS IMPLEMENTED
-            map_tile = map.getBlock(new_pos.x(), new_pos.y());
+            map_tile = map.getBlock(new_pos.y(), new_pos.x());
         } catch (ExecutionControl.NotImplementedException ignored) {
 
         }
@@ -89,6 +85,7 @@ public class World implements IWorld {
 
     @Override
     public void draw(SpriteBatch batch) {
+        map.draw(batch);
         for (var entity : entities) {
             entity.draw(batch);
         }
