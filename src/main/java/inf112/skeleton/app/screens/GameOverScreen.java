@@ -34,7 +34,8 @@ public class GameOverScreen implements Screen{
     font.setColor(Color.WHITE);
     float x = Gdx.graphics.getWidth() / 2f - 100;
     float y = Gdx.graphics.getHeight() / 2f;
-    font.draw(batch, "Denne teksten e cursed -- FIKS", x, y); // Teksten e for liten uansett ka eg gjør TODO
+    font.getData().setScale(2, 2);
+    font.draw(batch, "Denne teksten e cursed -- FIKS", x, y); // Fikset skaleringen
     float secondLineY = y - font.getLineHeight();
     font.draw(batch, "Press ENTER to try again!", x, secondLineY);
 
