@@ -9,10 +9,13 @@
 ## Om spillet
 >“Ravi er gruvevandring i en aktiv vulkan, det viser seg at en ancient milits som har fanget ravi inne i coinbanken deres og ravi er nå på rømmen fra både akse-ekstreme forces og en stadig mer aktiv vulkan“
 
-## Kjøring (TODO)
+## Teknisk beskrivelse
+
+
+## Kjøring
 * Kjør Main i din IDE
 
-## Kjente feil (TODO)
+## Kjente feil
 Ingen foreløpig
 
 ## Viktige lenker
@@ -28,4 +31,5 @@ Ingen foreløpig
 
 ## Credits
 [Inspirasjon for ScreenManager](https://happycoding.io/tutorials/libgdx/game-screens#the-libgdx-approach)
+
 [Lava tileset](https://assetstore.unity.com/packages/2d/textures-materials/grotto-escape-ii-86689)
