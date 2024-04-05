@@ -14,6 +14,8 @@ public class World {
 
     private Lava lava;
     private Player player;
+
+    // TODO Entities can spawn, but are never removed. Remove entities that touch lava or something.
     private List<IEntity> entities;
     private Map map;
     private static final Texture fog = Textures.Fog.texture;
@@ -27,7 +29,10 @@ public class World {
     }
 
     public World(GameScreen game) {
-        // TODO remove this. In the future, a world is created by a factory interpreting some map data.
+
+        // TODO Maybe the world should just be a long-lived object that handles loading of several Map objects.
+        // TODO Load random map chunk from the maps folder. Keep loading and unloading maps as the player travels up.
+
         this.player = new Player(new Vector2i(1, 1), this);
         this.entities = new ArrayList<>();
         this.map = new Map(this, "maps/map1.txt");
