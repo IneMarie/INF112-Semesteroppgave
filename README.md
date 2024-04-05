@@ -10,9 +10,7 @@
 >“Ravi er gruvevandring i en aktiv vulkan, det viser seg at en ancient milits som har fanget ravi inne i coinbanken deres og ravi er nå på rømmen fra både akse-ekstreme forces og en stadig mer aktiv vulkan“
 
 ## Kjøring (TODO)
-* Kompileres med `mvn package`.
-* Kjøres med `java -jar target/kurt-mario-1.0-SNAPSHOT-fat.jar`
-* Krever Java 21 eller senere
+* Kjør Main i din IDE
 
 ## Kjente feil (TODO)
 Ingen foreløpig
@@ -29,3 +27,5 @@ Ingen foreløpig
 [Planlegging av spill](https://docs.google.com/document/d/1aa2oW-XstsS6mD0cP296_O31NZNTnafWvksUJrwbtmI/edit)
 
 ## Credits
+[Inspirasjon for ScreenManager](https://happycoding.io/tutorials/libgdx/game-screens#the-libgdx-approach)
+[Lava tileset](https://assetstore.unity.com/packages/2d/textures-materials/grotto-escape-ii-86689)

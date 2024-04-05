@@ -48,7 +48,6 @@ public class ScreenManager extends Game {
      */
     public void restartGame() {
         gameScreen = new GameScreen(this);
-        gameScreen = new GameScreen(this);
     }
 }
 
