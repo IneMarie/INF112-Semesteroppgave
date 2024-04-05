@@ -34,7 +34,7 @@ public class World {
 
     public World(GameScreen game) {
         // TODO remove this. In the future, a world is created by a factory interpreting some map data.
-        this.player = new Player(new Vector2i(1, 1), this);
+        this.player = new Player(new Vector2i(1, 1), this, game);
         this.entities = new ArrayList<>();
         this.map = new Map();
         this.lava = new Lava(0, 5, this.player, game);
@@ -107,6 +107,6 @@ public class World {
         }
         player.draw(batch);
         lava.draw(batch);
-        batch.draw(fog, player.getScreenPosition().x - 16.5f, player.getScreenPosition().y - 16.5f, 34, 34);
+        batch.draw(fog, player.getScreenPosition().x - 21.5f, player.getScreenPosition().y - 21.5f, 44, 44);
     }
 }
