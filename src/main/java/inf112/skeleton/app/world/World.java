@@ -1,7 +1,10 @@
 package inf112.skeleton.app.world;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+
+import inf112.skeleton.app.assets.Textures;
 import inf112.skeleton.app.geometry.Vector2i;
 import inf112.skeleton.app.screens.GameScreen;
 import jdk.jshell.spi.ExecutionControl;
@@ -15,11 +18,14 @@ public class World {
     private Player player;
     private List<IEntity> entities;
     private Map map;
+    private static final Texture fog = Textures.Fog.texture;
+
 
     public World(Player player, List<IEntity> entities, Map map) {
         this.player = player;
         this.entities = entities;
         this.map = map;
+
     }
 
     public Vector2 getPlayerScreenPosition() {
@@ -101,5 +107,6 @@ public class World {
         }
         player.draw(batch);
         lava.draw(batch);
+        batch.draw(fog, player.getScreenPosition().x - 16.5f, player.getScreenPosition().y - 16.5f, 34, 34);
     }
 }
