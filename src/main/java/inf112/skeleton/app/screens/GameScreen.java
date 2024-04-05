@@ -127,7 +127,7 @@ public class GameScreen implements Input.StateMachine, Screen {
     }
 
     public void setGameOver() {
-        System.out.println("Spilleren døde av lava :(");
+        System.out.println("Player died to lava");
         screenManager.showGameOverScreen();
     }
 }

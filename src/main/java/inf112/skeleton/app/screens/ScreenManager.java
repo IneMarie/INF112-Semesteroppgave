@@ -1,7 +1,5 @@
 package inf112.skeleton.app.screens;
 
-import static org.mockito.Mockito.timeout;
-
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;
 
@@ -15,40 +13,40 @@ public class ScreenManager extends Game {
   @Override
   public void create() {
     
-    // Oppretter screens
+    // Creates screens
     restartGame();
     titleScreen = new TitleScreen(this);
     gameOverScreen = new GameOverScreen(this);
     winScreen = new WinScreen(this);
     
-    // ---- VIKTIG FOR TESTING ----
-    // Bestem hvilken screen man begynner på
+    // ---- IMPORTANT FOR TESTING ----
+    // Choose which screen the game starts on
     setScreen(titleScreen);
   }
   
   /**
-  * Bytter til titleScreen
+  * Switches to titleScreen
   */
   public void showTitleScreen() {
     setScreen(titleScreen);
   }
   
   /**
-  * Bytter til gameScreen
+  * Switches to gameScreen
   */
   public void showGameScreen() {
     setScreen(gameScreen);
   }
   
   /**
-  * Bytter til GameOverScreen
+  * Switches to GameOverScreen
   */
   public void showGameOverScreen() {
     setScreen(gameOverScreen);
   }
 
   /**
-  * Bytter til winScreen
+  * Switches to winScreen
   */
   public void showWinScreen() {
     setScreen(winScreen);
@@ -56,7 +54,7 @@ public class ScreenManager extends Game {
   
   
   /**
-  * Starter et nytt spill
+  * Starts a new game
   */
   public void restartGame() {
     gameScreen = new GameScreen(this);
