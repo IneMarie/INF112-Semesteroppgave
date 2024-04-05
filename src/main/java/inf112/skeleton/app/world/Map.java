@@ -59,7 +59,7 @@ public class Map {
 
     public Tile getBlock(int x, int y) throws ExecutionControl.NotImplementedException {
         if (x >= 0 && x < tiles.size() && y >= 0 && y < tiles.get(x).size()) {
-            return tiles.get(x).get(y);
+            return tiles.get(y).get(x);
         }
         throw new ExecutionControl.NotImplementedException("Invalid block coordinates");
     }

@@ -38,8 +38,8 @@ public class World {
         this.entities = new ArrayList<>();
         this.map = new Map();
         this.lava = new Lava(0, 5, this.player, game);
-        
-        
+
+
     }
 
     private IEntity getEntityAt(Vector2i pos) {
@@ -58,9 +58,9 @@ public class World {
         Vector2i new_pos = entity.getPosition().add(movement);
         IEntity b = getEntityAt(new_pos);
         Tile map_tile = Tile.Floor;
-        
+
         try { // TODO THIS SHOULD BE REMOVED WHEN MAP IS IMPLEMENTED
-            map_tile = map.getBlock(new_pos.y(), new_pos.x());
+            map_tile = map.getBlock(new_pos.x(), new_pos.y());
         } catch (ExecutionControl.NotImplementedException ignored) {
 
         }
@@ -68,7 +68,7 @@ public class World {
         if (new_pos.x() > 16 || new_pos.x() < 0 || new_pos.y() < 0) {
             return false;
         }
-        
+
 
         if (map_tile.is(Tile.Flag.Solid)) {
             return false;
