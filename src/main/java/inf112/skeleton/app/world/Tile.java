@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 import inf112.skeleton.app.assets.Textures;
 
 public enum Tile {
+    None(null),
     Floor(Textures.Floor.texture),
     Wall(Textures.Wall.texture, Flag.Solid),
     Lava(Textures.Lava.texture, Flag.Damaging),
@@ -79,7 +80,7 @@ public enum Tile {
     }
 
     public void draw(SpriteBatch sb, Vector2 position, Vector2 origin) {
-        sb.draw(texture, position.x - origin.x, position.y - origin.y, 1, 1);
+        if (texture != null) sb.draw(texture, position.x - origin.x, position.y - origin.y, 1, 1);
     }
 
     public void draw(SpriteBatch sb, Vector2 position) {
