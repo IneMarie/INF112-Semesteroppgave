@@ -1,78 +1,115 @@
 package inf112.skeleton.app.world;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import jdk.jshell.spi.ExecutionControl;
+import com.badlogic.gdx.math.Vector2;
+import inf112.skeleton.app.geometry.Vector2i;
 
 import java.util.ArrayList;
 
 
-public class Map {
+/**
+ * The job of this class is to parse a text file to produce a 2d list of static tiles, as well as a list of dynamic IEntity objects.
+ * The size of a Map is always the same; defined by the width and height constants below.
+ * Stack several Map objects to represent and arbitrarily sized world.
+ */
+public class Map { // TODO rename to MapChunk. Do later to avoid merge conflicts.
 
-    private ArrayList<ArrayList<Tile>> tiles;
+    private ArrayList<ArrayList<Tile>> staticTiles;
+    private World world;
 
-    public Map() {
+    public final int width = 16;
+    public final int height = 16;
 
-        tiles = new ArrayList<>();
+    /**
+     * @param world is needed to produce entities
+     */
+    public Map(World world, String path) {
 
-        // Adds rows to the map
-        tiles.add(createRow("FFFWWFFBFFWWFBFB"));
-        tiles.add(createRow("FFBFWFFBFBFWBFBW"));
-        tiles.add(createRow("BWFWFBFFWBFFFBFB"));
-        tiles.add(createRow("FFFFFWWWWFFFBFBW"));
-        tiles.add(createRow("FWWWWWWWWFWWWWFF"));
-        tiles.add(createRow("FFFFWFFFFFFFWFFF"));
-        tiles.add(createRow("WWWWWFWWWWFFFBFF"));
-        tiles.add(createRow("WFFFFFWFWWWWWWWW"));
-        tiles.add(createRow("WFBFWWWFFFFFFFFW"));
-        tiles.add(createRow("WBFBWFBFWWFFFFFW"));
-        tiles.add(createRow("WFBFWFWFFWFFFFFW"));
-        tiles.add(createRow("WBFBWFWFFWFBFBFW"));
-        tiles.add(createRow("WFBFWFWBBWBFBFBW"));
-        tiles.add(createRow("WBFBWFWFFWFBBBFW"));
-        tiles.add(createRow("FBFFFBFFFWBBFBBW"));
-        tiles.add(createRow("FFFWWWWWWWWFFFWW"));
+        this.world = world;
+        staticTiles = new ArrayList<>();
+        parseMapFile(path);
 
+        if (staticTiles.size() != height || staticTiles.get(0).size() != width) {
+            throw new IllegalArgumentException("the map file is not the correct size");
+        }
 
     }
 
-    private ArrayList<Tile> createRow(String row) {
-        ArrayList<Tile> tileRow = new ArrayList<>();
-        for (char c : row.toCharArray()) {
+    private void parseMapFile(String path) {
+        var f = Gdx.files.internal(path);
+        f.readString().lines().forEach(this::parseRow);
+    }
+
+    /**
+     * Loads tiles into the 2d staticTiles list.
+     * Also spawns entities in this.world.
+     *
+     * @param row a row of text containing only valid characters representing tiles and entities.
+     * @throws IllegalArgumentException if the characters in the map are not handled by this method.
+     * @throws IllegalArgumentException if there aren't enough characters in a row.
+     */
+    private void parseRow(String row) throws IllegalArgumentException {
+        ArrayList<Tile> tileRow = new ArrayList<>(width);
+        int y = staticTiles.size();
+        var charArray = row.toCharArray();
+        for (int x = 0; x < charArray.length; x++) {
+            var c = charArray[x];
+
+            // Stupid editor removes trailing whitespace in the map files.
+            // So this control character is used to denote the end of a row.
+            if (c == '|') continue;
+
             Tile tile = switch (c) {
+                case ' ' -> Tile.None;
                 case 'W' -> Tile.Wall;
-                case 'F' -> Tile.Floor;
                 case 'B' -> Tile.Boulder;
                 default -> throw new IllegalArgumentException("Invalid character in map: " + c);
             };
-            tileRow.add(tile);
+            if (tile.is(Tile.Flag.Movable)) {
+                world.spawnEntity(
+                        switch (tile) {
+                            case Boulder -> new Boulder(new Vector2i(x, height - 1 - y), world);
+                            default ->
+                                    throw new IllegalArgumentException("Tile is not handled by Map class. " + tile.getClass().getName());
+                        }
+                );
+                tileRow.add(Tile.None);
+            } else {
+                tileRow.add(tile);
+            }
         }
-        return tileRow;
-    }
-
-    public int getHeight() {
-        return tiles.size();
-    }
-
-    public int getWidth() {
-        return tiles.get(0).size();
-    }
-
-    public Tile getBlock(int x, int y) throws ExecutionControl.NotImplementedException {
-        if (x >= 0 && x < tiles.size() && y >= 0 && y < tiles.get(x).size()) {
-            return tiles.get(y).get(x);
+        if (tileRow.size() < width) {
+            throw new IllegalArgumentException("map row is not the correct width");
         }
-        throw new ExecutionControl.NotImplementedException("Invalid block coordinates");
+        staticTiles.add(0, tileRow);
     }
 
+    /**
+     * @return the tile at the given x and y coordinates, or Tile.None if there is no tile there, or the coordinates
+     * out of the range of the map.
+     */
+    public Tile getBlock(int x, int y) {
+        if (x >= 0 && x < staticTiles.size() && y >= 0 && y < staticTiles.get(x).size()) {
+            return staticTiles.get(y).get(x);
+        } else {
+            return Tile.None;
+        }
+    }
+
+    static Vector2 temporary = new Vector2();
+
+    /**
+     * Draws all tiles in the staticTiles list.
+     * Also draws the floor tile under all tiles.
+     */
     public void draw(SpriteBatch sb) {
-        for (int y = 0; y < tiles.size(); y++) {
-            for (int x = 0; x < tiles.get(y).size(); x++) {
-                Tile tile = tiles.get(y).get(x);
-                if (tile == Tile.Boulder) {
-                    // Draws Floor under Boulder
-                    sb.draw(Tile.Floor.texture, x, y, 1, 1);
-                }
-                sb.draw(tile.texture, x, y, 1, 1);
+        for (int y = 0; y < staticTiles.size(); y++) {
+            for (int x = 0; x < staticTiles.get(y).size(); x++) {
+                Tile tile = staticTiles.get(y).get(x);
+                temporary.set(x, y);
+                Tile.Floor.draw(sb, temporary);
+                tile.draw(sb, temporary);
             }
         }
     }

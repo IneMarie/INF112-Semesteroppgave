@@ -3,11 +3,9 @@ package inf112.skeleton.app.world;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-
 import inf112.skeleton.app.assets.Textures;
 import inf112.skeleton.app.geometry.Vector2i;
 import inf112.skeleton.app.screens.GameScreen;
-import jdk.jshell.spi.ExecutionControl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,18 +26,20 @@ public class World {
 
     }
 
-    public Vector2 getPlayerScreenPosition() {
-        return player.getScreenPosition();
-    }
-
     public World(GameScreen game) {
         // TODO remove this. In the future, a world is created by a factory interpreting some map data.
         this.player = new Player(new Vector2i(1, 1), this);
         this.entities = new ArrayList<>();
-        this.map = new Map();
+        this.map = new Map(this, "maps/map1.txt");
         this.lava = new Lava(0, 5, this.player, game);
+    }
 
+    public Vector2 getPlayerScreenPosition() {
+        return player.getScreenPosition();
+    }
 
+    public void spawnEntity(IEntity e) {
+        entities.add(e);
     }
 
     private IEntity getEntityAt(Vector2i pos) {
@@ -52,18 +52,19 @@ public class World {
     }
 
     public boolean moveEntity(IEntity entity, Vector2i movement) {
+        // How many blocks an entity can push at once.
+        int initialStrength = 2;
+        return moveEntity(entity, movement, initialStrength);
+    }
+
+    public boolean moveEntity(IEntity entity, Vector2i movement, int strength) {
         if (movement.x() == 0 && movement.y() == 0) {
             return false;
         }
         Vector2i new_pos = entity.getPosition().add(movement);
         IEntity b = getEntityAt(new_pos);
-        Tile map_tile = Tile.Floor;
 
-        try { // TODO THIS SHOULD BE REMOVED WHEN MAP IS IMPLEMENTED
-            map_tile = map.getBlock(new_pos.x(), new_pos.y());
-        } catch (ExecutionControl.NotImplementedException ignored) {
-
-        }
+        Tile map_tile = map.getBlock(new_pos.x(), new_pos.y());
 
         if (new_pos.x() > 16 || new_pos.x() < 0 || new_pos.y() < 0) {
             return false;
@@ -79,7 +80,7 @@ public class World {
             return true;
         }
 
-        if (b.getTile().is(Tile.Flag.Movable) && moveEntity(b, movement)) {
+        if (b.getTile().is(Tile.Flag.Movable) && strength > 0 && moveEntity(b, movement, strength - 1)) {
             entity.setPosition(new_pos);
             return true;
         }
