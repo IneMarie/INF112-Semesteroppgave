@@ -4,6 +4,10 @@ import com.badlogic.gdx.math.Vector2;
 import inf112.skeleton.app.geometry.Vector2i;
 import inf112.skeleton.app.world.IEntity;
 
+/**
+ * PositionLerp calculates a Vector2 representing smoothed out movement for the purposes of drawing moving entities.
+ * It watches an entity and linearly interpolates its own position to follow the entities position.
+ */
 public class PositionLerp {
 
     IEntity entity;
@@ -21,6 +25,13 @@ public class PositionLerp {
         lerpedPosition = new Vector2(entity.getPosition().x(), entity.getPosition().y());
     }
 
+    /**
+     * Looks at this LerpedPosition's IEntity to see if it has moved since the last update.
+     * Start's the interpolation process if that is the case.
+     * Should be called every frame.
+     *
+     * @param deltaSeconds time passed since last update call.
+     */
     public void update(float deltaSeconds) {
         if (isMoving) {
             if (secondsMoved >= secondsToMove) {
