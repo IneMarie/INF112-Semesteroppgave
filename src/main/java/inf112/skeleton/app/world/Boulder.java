@@ -12,11 +12,11 @@ public class Boulder implements IEntity {
 
 
     private Vector2i position;
-    private IWorld world;
+    private World world;
     private PositionLerp positionLerp;
 
 
-    public Boulder(Vector2i position, IWorld world) {
+    public Boulder(Vector2i position, World world) {
         this.position = position;
         this.world = world;
         positionLerp = new PositionLerp(this);

@@ -12,16 +12,20 @@ public class Player implements IEntity {
 
     private PositionLerp positionLerp;
     private Vector2i position;
-    private IWorld world;
+    private World world;
     private static final Texture texture = Textures.Player.texture;
 
 
-    public Player(Vector2i position, IWorld world) {
+    public Player(Vector2i position, World world) {
         this.position = position;
         this.world = world;
         positionLerp = new PositionLerp(this);
     }
 
+
+    public Vector2 getScreenPosition() {
+        return positionLerp.getLerpedPosition();
+    }
 
     public void setPosition(Vector2i position) {
         this.position = position;

@@ -1,6 +1,7 @@
 package inf112.skeleton.app.world;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 import inf112.skeleton.app.geometry.Vector2i;
 import inf112.skeleton.app.screens.GameScreen;
 import jdk.jshell.spi.ExecutionControl;
@@ -8,7 +9,7 @@ import jdk.jshell.spi.ExecutionControl;
 import java.util.ArrayList;
 import java.util.List;
 
-public class World implements IWorld {
+public class World {
 
     private Lava lava;
     private Player player;
@@ -19,6 +20,10 @@ public class World implements IWorld {
         this.player = player;
         this.entities = entities;
         this.map = map;
+    }
+
+    public Vector2 getPlayerScreenPosition() {
+        return player.getScreenPosition();
     }
 
     public World(GameScreen game) {
@@ -40,7 +45,6 @@ public class World implements IWorld {
         return null;
     }
 
-    @Override
     public boolean moveEntity(IEntity entity, Vector2i movement) {
         if (movement.x() == 0 && movement.y() == 0) {
             return false;
@@ -82,7 +86,6 @@ public class World implements IWorld {
         return false;
     }
 
-    @Override
     public void update(float deltaSeconds) {
         for (var entity : entities) {
             entity.update(deltaSeconds);
@@ -91,7 +94,6 @@ public class World implements IWorld {
         lava.updateLava(deltaSeconds);
     }
 
-    @Override
     public void draw(SpriteBatch batch) {
         map.draw(batch);
         for (var entity : entities) {
