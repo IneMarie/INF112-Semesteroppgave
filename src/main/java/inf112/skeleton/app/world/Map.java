@@ -1,13 +1,9 @@
 package inf112.skeleton.app.world;
 
-import java.util.ArrayList;
-
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Vector2;
-
-import inf112.skeleton.app.geometry.Vector2i;
 import jdk.jshell.spi.ExecutionControl;
 
+import java.util.ArrayList;
 
 
 public class Map {
@@ -37,26 +33,17 @@ public class Map {
         tiles.add(createRow("FFFWWWWWWWWFFFWW"));
 
 
-        
     }
 
     private ArrayList<Tile> createRow(String row) {
         ArrayList<Tile> tileRow = new ArrayList<>();
         for (char c : row.toCharArray()) {
-            Tile tile;
-            switch (c) {
-                case 'W':
-                    tile = Tile.Wall;
-                    break;
-                case 'F':
-                    tile = Tile.Floor;
-                    break;
-                case 'B':
-                    tile = Tile.Boulder;
-                    break;
-                default:
-                    throw new IllegalArgumentException("Invalid character in map: " + c);
-            }
+            Tile tile = switch (c) {
+                case 'W' -> Tile.Wall;
+                case 'F' -> Tile.Floor;
+                case 'B' -> Tile.Boulder;
+                default -> throw new IllegalArgumentException("Invalid character in map: " + c);
+            };
             tileRow.add(tile);
         }
         return tileRow;
@@ -89,5 +76,5 @@ public class Map {
             }
         }
     }
-    
+
 }

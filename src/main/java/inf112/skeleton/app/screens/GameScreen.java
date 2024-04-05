@@ -6,11 +6,11 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.ScreenUtils;
 import inf112.skeleton.app.CameraController2D;
 import inf112.skeleton.app.Input;
 import inf112.skeleton.app.assets.Textures;
-import inf112.skeleton.app.world.IWorld;
 import inf112.skeleton.app.world.World;
 
 
@@ -22,7 +22,7 @@ public class GameScreen implements Input.StateMachine, Screen {
     private CameraController2D uiCamera;
     private Input.State inputState;
     private final ScreenManager screenManager;
-    private IWorld world;
+    private World world;
 
 
     public GameScreen(ScreenManager screenManager) {
@@ -37,7 +37,7 @@ public class GameScreen implements Input.StateMachine, Screen {
 
         worldCamera = new CameraController2D(16);
         worldCamera.screenAnchor.x = 0f;
-        worldCamera.screenAnchor.y = 0f;
+        worldCamera.screenAnchor.y = -0.5f;
 
         uiCamera = new CameraController2D(720);
         uiCamera.screenAnchor.x = 0f;
@@ -68,6 +68,8 @@ public class GameScreen implements Input.StateMachine, Screen {
      */
     public void update(float deltaSeconds) {
         world.update(deltaSeconds);
+        var v = new Vector2(0, world.getPlayerScreenPosition().y);
+        worldCamera.setTarget(v);
     }
 
     @Override
