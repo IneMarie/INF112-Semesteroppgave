@@ -23,10 +23,12 @@ public class World implements IWorld {
 
     public World(GameScreen game) {
         // TODO remove this. In the future, a world is created by a factory interpreting some map data.
-        this.player = new Player(new Vector2i(0, 0), this);
+        this.player = new Player(new Vector2i(1, 1), this);
         this.entities = new ArrayList<>();
         this.map = new Map();
         this.lava = new Lava(0, 5, this.player, game);
+        
+        
     }
 
     private IEntity getEntityAt(Vector2i pos) {
@@ -46,11 +48,17 @@ public class World implements IWorld {
         Vector2i new_pos = entity.getPosition().add(movement);
         IEntity b = getEntityAt(new_pos);
         Tile map_tile = Tile.Floor;
+        
         try { // TODO THIS SHOULD BE REMOVED WHEN MAP IS IMPLEMENTED
             map_tile = map.getBlock(new_pos.y(), new_pos.x());
         } catch (ExecutionControl.NotImplementedException ignored) {
 
         }
+
+        if (new_pos.x() > 16 || new_pos.x() < 0 || new_pos.y() < 0) {
+            return false;
+        }
+        
 
         if (map_tile.is(Tile.Flag.Solid)) {
             return false;
