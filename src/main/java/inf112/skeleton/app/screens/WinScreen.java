@@ -8,24 +8,15 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 
-import inf112.skeleton.app.CameraController2D;
-
 public class WinScreen implements Screen {
   private final ScreenManager screenManager;
   private final BitmapFont font;
   private final SpriteBatch batch; 
-  private CameraController2D uiCamera;
-  
   
   public WinScreen(ScreenManager screenManager){
     this.screenManager = screenManager;
     font = new BitmapFont();
-    batch = new SpriteBatch();
-    
-    uiCamera = new CameraController2D(720);
-    uiCamera.screenAnchor.x = 0f;
-    uiCamera.screenAnchor.y = 0f;
-    
+    batch = new SpriteBatch(); 
   }
   
   @Override
@@ -35,7 +26,6 @@ public class WinScreen implements Screen {
   @Override
   public void render(float delta) {
     ScreenUtils.clear(Color.BLACK);
-    
     
     // Tegner tekst
     batch.begin();
@@ -47,8 +37,6 @@ public class WinScreen implements Screen {
     font.draw(batch, "Press ENTER to try again!", x, secondLineY);
     batch.end();
     
-    uiCamera.begin(batch);
-    
     // Sjekker om Enter
     if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
       screenManager.restartGame();
@@ -59,7 +47,6 @@ public class WinScreen implements Screen {
   
   @Override
   public void resize(int width, int height) {
-    uiCamera.onResize(width, height);
   }
   
   @Override
