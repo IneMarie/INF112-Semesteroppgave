@@ -9,18 +9,16 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.ScreenUtils;
 import inf112.skeleton.app.CameraController2D;
-import inf112.skeleton.app.Input;
 import inf112.skeleton.app.assets.Textures;
 import inf112.skeleton.app.world.World;
 
 
-public class GameScreen implements Input.StateMachine, Screen {
+public class GameScreen implements Screen {
     private SpriteBatch batch;
     private BitmapFont font;
     private Sound bellSound;
     private CameraController2D worldCamera;
     private CameraController2D uiCamera;
-    private Input.State inputState;
     private final ScreenManager screenManager;
     private World world;
 
@@ -42,9 +40,6 @@ public class GameScreen implements Input.StateMachine, Screen {
         uiCamera = new CameraController2D(720);
         uiCamera.screenAnchor.x = 0f;
         uiCamera.screenAnchor.y = 0f;
-
-        Input.stateMachine = this;
-        inputState = Input.State.GamePlay;
 
         this.world = new World(this);
 
@@ -114,11 +109,6 @@ public class GameScreen implements Input.StateMachine, Screen {
     @Override
     public void hide() {
 
-    }
-
-    @Override
-    public Input.State getState() {
-        return inputState;
     }
 
     // Getter metode for batch

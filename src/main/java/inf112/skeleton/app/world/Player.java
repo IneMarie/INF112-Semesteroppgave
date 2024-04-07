@@ -3,7 +3,7 @@ package inf112.skeleton.app.world;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import inf112.skeleton.app.Input;
+import inf112.skeleton.app.AmateurInput;
 import inf112.skeleton.app.animation.PositionLerp;
 import inf112.skeleton.app.assets.Textures;
 import inf112.skeleton.app.geometry.Vector2i;
@@ -46,7 +46,7 @@ public class Player implements IEntity {
     public void update(float deltaSeconds) {
 
 
-        Vector2i input = Input.playerMove();
+        Vector2i input = AmateurInput.playerMove();
 
         Vector2i movement = input;
         if (input.x() != 0) {
