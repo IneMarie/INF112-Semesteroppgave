@@ -68,11 +68,10 @@ public class Map { // TODO rename to MapChunk. Do later to avoid merge conflicts
             };
             if (tile.is(Tile.Flag.Movable)) {
                 world.spawnEntity(
-                        switch (tile) {
-                            case Boulder -> new Boulder(new Vector2i(x, height - 1 - y), world);
-                            default ->
-                                    throw new IllegalArgumentException("Tile is not handled by Map class. " + tile.getClass().getName());
-                        }
+                        new Entity(
+                                tile,
+                                new Vector2i(x, tiles.size() + removedRowCount)
+                        )
                 );
                 tileRow.add(Tile.None);
             } else {
