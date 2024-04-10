@@ -11,10 +11,10 @@ import inf112.skeleton.app.screens.GameScreen;
 
 public class Player implements IEntity {
 
-    private PositionLerp positionLerp;
+    private final PositionLerp positionLerp;
     private Vector2i position;
-    private World world;
-    private GameScreen game;
+    private final World world;
+    private final GameScreen game;
     private static final Texture texture = Textures.Player.texture;
 
 
