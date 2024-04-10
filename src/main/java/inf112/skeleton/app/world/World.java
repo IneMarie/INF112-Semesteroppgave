@@ -99,10 +99,10 @@ public class World {
     }
 
     public void update(float deltaSeconds) {
+        player.update(deltaSeconds);
         for (var entity : entities) {
             entity.update(deltaSeconds);
         }
-        player.update(deltaSeconds);
         lava.updateLava(deltaSeconds);
     }
 
