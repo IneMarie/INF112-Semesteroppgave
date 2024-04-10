@@ -1,63 +1,89 @@
 package inf112.skeleton.app.world;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import inf112.skeleton.app.AmateurInput;
 import inf112.skeleton.app.geometry.Vector2i;
 
 import java.util.ArrayList;
 
 
 /**
- * The job of this class is to parse a text file to produce a 2d list of static tiles, as well as a list of dynamic IEntity objects.
- * The size of a Map is always the same; defined by the width and height constants below.
- * Stack several Map objects to represent and arbitrarily sized world.
+ * The job of a Map object is to load in a map file, spawn movable entities into the World, and keep track of static
+ * tiles, so the World can ask the Map for collision-data.
  */
-public class Map { // TODO rename to MapChunk. Do later to avoid merge conflicts.
+public class Map {
 
-    private ArrayList<ArrayList<Tile>> staticTiles;
-    private World world;
-
-    public final int width = 16;
-    public final int height = 16;
+    private final ArrayList<ArrayList<Tile>> tiles;
+    private final World world;
+    private int removedRowCount;
 
     /**
      * @param world is needed to produce entities
      */
-    public Map(World world, String path) {
-
+    public Map(World world) {
         this.world = world;
-        staticTiles = new ArrayList<>();
-        parseMapFile(path);
-
-        if (staticTiles.size() != height || staticTiles.get(0).size() != width) {
-            throw new IllegalArgumentException("the map file is not the correct size");
-        }
-
-    }
-
-    private void parseMapFile(String path) {
-        var f = Gdx.files.internal(path);
-        f.readString().lines().forEach(this::parseRow);
+        tiles = new ArrayList<>();
+        removedRowCount = 0;
     }
 
     /**
-     * Loads tiles into the 2d staticTiles list.
-     * Also spawns entities in this.world.
+     * Every time this is called, the given map will be loaded into the game at the next available 'north' position.
+     * So you can cumulatively load small levels.
+     * You might use the output of this function as input for removeBottomRows.
+     *
+     * @param path the path to the .txt file representing the level.
+     * @return the number of rows loaded.
+     */
+    public int parseMapFile(String path) {
+        var f = Gdx.files.internal(path);
+        var lines = f.readString().lines().toList();
+        for (int i = lines.size() - 1; i >= 0; i--) {
+            parseRow(lines.get(i));
+        }
+        return lines.size();
+    }
+
+    /**
+     * removeBottomRows removes count rows while keeping track how many rows have been removed from this map in total.
+     * This is to make the removal of rows invisible to objects interacting with the Map.
+     * May be used to unload rows as new rows are loaded in.
+     *
+     * @param count rows to remove
+     * @return number of rows actually removed
+     */
+    public int removeBottomRows(int count) {
+        var removed = Math.max(count, 0);
+        var remaining = tiles.size() - removed;
+
+        for (int i = 0; i < remaining; i++) {
+            tiles.set(i, tiles.get(i + removed));
+        }
+
+        for (int i = 0; i < removed; i++) {
+            tiles.remove(tiles.size() - 1);
+        }
+
+        removedRowCount += removed;
+        return removed;
+    }
+
+    /**
+     * Loads tiles into the this.tiles list, and spawns entities in this.world.
+     * If called when the this.tiles list is populated; the new tiles will appear 'north' of existing tiles.
      *
      * @param row a row of text containing only valid characters representing tiles and entities.
      * @throws IllegalArgumentException if the characters in the map are not handled by this method.
-     * @throws IllegalArgumentException if there aren't enough characters in a row.
      */
     private void parseRow(String row) throws IllegalArgumentException {
-        ArrayList<Tile> tileRow = new ArrayList<>(width);
-        int y = staticTiles.size();
+        ArrayList<Tile> tileRow = new ArrayList<>();
         var charArray = row.toCharArray();
         for (int x = 0; x < charArray.length; x++) {
             var c = charArray[x];
 
-            // Stupid editor removes trailing whitespace in the map files.
-            // So this control character is used to denote the end of a row.
+            // Control character to mark the end of a row.
             if (c == '|') continue;
 
             Tile tile = switch (c) {
@@ -78,10 +104,7 @@ public class Map { // TODO rename to MapChunk. Do later to avoid merge conflicts
                 tileRow.add(tile);
             }
         }
-        if (tileRow.size() < width) {
-            throw new IllegalArgumentException("map row is not the correct width");
-        }
-        staticTiles.add(0, tileRow);
+        tiles.add(tileRow);
     }
 
     /**
@@ -89,8 +112,17 @@ public class Map { // TODO rename to MapChunk. Do later to avoid merge conflicts
      * out of the range of the map.
      */
     public Tile getBlock(int x, int y) {
-        if (x >= 0 && x < staticTiles.size() && y >= 0 && y < staticTiles.get(x).size()) {
-            return staticTiles.get(y).get(x);
+
+        y -= removedRowCount;
+
+        if (
+                !tiles.isEmpty()
+                        && 0 <= y
+                        && y < tiles.size()
+                        && 0 <= x
+                        && x < tiles.get(y).size()
+        ) {
+            return tiles.get(y).get(x);
         } else {
             return Tile.None;
         }
@@ -103,10 +135,16 @@ public class Map { // TODO rename to MapChunk. Do later to avoid merge conflicts
      * Also draws the floor tile under all tiles.
      */
     public void draw(SpriteBatch sb) {
-        for (int y = 0; y < staticTiles.size(); y++) {
-            for (int x = 0; x < staticTiles.get(y).size(); x++) {
-                Tile tile = staticTiles.get(y).get(x);
-                temporary.set(x, y);
+        if (AmateurInput.isKeyJustPressed(Input.Keys.R)) { // TODO remove
+            removeBottomRows(1);
+        }
+        for (int y = 0; y < tiles.size(); y++) {
+            for (int x = 0; x < tiles.get(y).size(); x++) {
+
+                int screenY = y + removedRowCount;
+
+                Tile tile = tiles.get(y).get(x);
+                temporary.set(x, screenY);
                 Tile.Floor.draw(sb, temporary);
                 tile.draw(sb, temporary);
             }

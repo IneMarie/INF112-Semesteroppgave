@@ -12,30 +12,26 @@ import java.util.List;
 
 public class World {
 
-    private Lava lava;
-    private Player player;
+    private final Lava lava;
+    private final Player player;
 
     // TODO Entities can spawn, but are never removed. Remove entities that touch lava or something.
-    private List<IEntity> entities;
-    private Map map;
+    private final List<IEntity> entities;
+    private final Map map;
     private static final Texture fog = Textures.Fog.texture;
 
 
-    public World(Player player, List<IEntity> entities, Map map) {
-        this.player = player;
-        this.entities = entities;
-        this.map = map;
-
-    }
-
     public World(GameScreen game) {
 
-        // TODO Maybe the world should just be a long-lived object that handles loading of several Map objects.
         // TODO Load random map chunk from the maps folder. Keep loading and unloading maps as the player travels up.
 
         this.player = new Player(new Vector2i(1, 1), this, game);
         this.entities = new ArrayList<>();
-        this.map = new Map(this, "maps/map1.txt");
+        this.map = new Map(this);
+        this.map.parseMapFile("maps/map1.txt"); // Example of stacking maps
+        this.map.parseMapFile("maps/map1.txt");
+        this.map.parseMapFile("maps/map1.txt");
+        this.map.parseMapFile("maps/map1.txt");
         this.lava = new Lava(0, 5, this.player, game);
     }
 
