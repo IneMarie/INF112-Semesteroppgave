@@ -12,7 +12,9 @@ public enum Textures {
     Snake("Dungeon Crawl Stone Soup Full/monster/animals/snake.png"),
     Boulder("rock placeholder.png"),
     Fog("fog of war png.png"),
-    Win("you win.png");
+    Win("you win.png"),
+    Dead("dead.png"),
+    Title("titleImage.png");
     
 
     public final Texture texture;

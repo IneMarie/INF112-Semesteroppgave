@@ -1,24 +1,31 @@
 package inf112.skeleton.app.screens;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.ScreenUtils;
+
 import inf112.skeleton.app.AmateurInput;
+import inf112.skeleton.app.CameraController2D;
+import inf112.skeleton.app.assets.Textures;
 
 
 public class GameOverScreen implements Screen {
     private final ScreenManager screenManager;
-    private final BitmapFont font;
+    private CameraController2D uiCamera;
     private final SpriteBatch batch;
+    private static final Texture dead = Textures.Dead.texture;
+
 
     public GameOverScreen(ScreenManager screenManager) {
         this.screenManager = screenManager;
-        font = new BitmapFont();
         batch = new SpriteBatch();
+
+        uiCamera = new CameraController2D(720);
+        uiCamera.screenAnchor.x = 0f;
+        uiCamera.screenAnchor.y = 0f;
     }
 
     @Override
@@ -27,20 +34,16 @@ public class GameOverScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(1, 0, 0, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+      ScreenUtils.clear(new Color(2 / 255f, 0 / 255f, 24 / 255f, 255 / 255f));
 
-        // Tegner tekst
         batch.begin();
-        font.setColor(Color.WHITE);
-        float x = Gdx.graphics.getWidth() / 2f - 100;
-        float y = Gdx.graphics.getHeight() / 2f;
-        font.getData().setScale(2, 2);
-        font.draw(batch, "Denne teksten e cursed -- FIKS", x, y); // Fikset skaleringen
-        float secondLineY = y - font.getLineHeight();
-        font.draw(batch, "Press ENTER to try again!", x, secondLineY);
+
+        batch.draw(dead, 0, 0, 1419 / 2, 1515 / 2);
 
         batch.end();
+
+        uiCamera.begin(batch);
+
 
         // Sjekker om Enter
         if (AmateurInput.isKeyJustPressed(Input.Keys.ENTER)) {
@@ -51,6 +54,8 @@ public class GameOverScreen implements Screen {
 
     @Override
     public void resize(int width, int height) {
+      uiCamera.onResize(width, height);
+
     }
 
     @Override
@@ -67,7 +72,6 @@ public class GameOverScreen implements Screen {
 
     @Override
     public void dispose() {
-        font.dispose();
         batch.dispose();
     }
 }
