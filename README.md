@@ -10,7 +10,7 @@
 >“Du må rømme fra en stadig mer aktiv vulkan. Lavaen stiger gradvis så tiden er knapp. Klarer du å unnslippe?“
 
 ## Teknisk beskrivelse
-Spillet top down 2d spill, der man beveger spilleren enten ved bruk WASD eller piltastene for å navigere et labyrint-lignende kart. Kartet har hindringer i form av steiner som kan dyttes, og en stadig stigende lava. Dersom lavaen treffer spilleren dør man, og får game over. 
+Top down 2d spill, der man beveger spilleren enten ved bruk WASD eller piltastene for å navigere et labyrint-lignende kart. Kartet har hindringer i form av steiner som kan dyttes, og en stadig stigende lava. Dersom lavaen treffer spilleren dør man, og får game over. Dersom man når toppen av kartet vinner man.
 
 ## Kjøring
 * Kjør Main i din IDE
