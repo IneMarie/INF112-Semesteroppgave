@@ -7,16 +7,16 @@
 * Ine (`Testansvarlig`)
 
 ## Om spillet
->“Ravi er gruvevandring i en aktiv vulkan, det viser seg at en ancient milits som har fanget ravi inne i coinbanken deres og ravi er nå på rømmen fra både akse-ekstreme forces og en stadig mer aktiv vulkan“
+>“Du må rømme fra en stadig mer aktiv vulkan. Lavaen stiger gradvis så tiden er knapp. Klarer du å unnslippe?“
 
 ## Teknisk beskrivelse
-
+Top down 2d spill, der man beveger spilleren enten ved bruk WASD eller piltastene for å navigere et labyrint-lignende kart. Kartet har hindringer i form av steiner som kan dyttes, og en stadig stigende lava. Dersom lavaen treffer spilleren dør man, og får game over. Dersom man når toppen av kartet vinner man.
 
 ## Kjøring
 * Kjør Main i din IDE
 
 ## Kjente feil
-Ingen foreløpig
+Man kan dytte steiner ut av kartet
 
 ## Viktige lenker
 [Semesteroppgave krav](https://git.app.uib.no/inf112/24v/inf112-24v/-/wikis/prosjekt/semesteroppgave)
@@ -33,3 +33,6 @@ Ingen foreløpig
 [Inspirasjon for ScreenManager](https://happycoding.io/tutorials/libgdx/game-screens#the-libgdx-approach)
 
 [Lava tileset](https://assetstore.unity.com/packages/2d/textures-materials/grotto-escape-ii-86689)
+
+Bildene for title- og gameover screen er [generert av AI](https://www.bing.com/images/create) og [redigert videre](https://picfont.com/) av Ine.
+
