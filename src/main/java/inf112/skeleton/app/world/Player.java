@@ -78,11 +78,28 @@ public class Player implements IEntity {
         sb.draw(texture, v2.x, v2.y, 1, 1);
     }
 
+    @Override
+    public Texture texture() {
+        return texture;
+    }
+
+    private State state = State.Normal;
+
+    private static enum State {
+        Normal(Flag.Player),
+        PoweredUp(Flag.Player, Flag.Explosive),
+        ;
+
+        private final Flag.Group flags;
+
+        State(Flag... flags) {
+            this.flags = Flag.join(flags);
+        }
+    }
 
     @Override
-    public Tile getTile() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getTile'");
+    public Flag.Group flags() {
+        return state.flags;
     }
 
 }

@@ -49,45 +49,67 @@ public class World {
                 return ent;
             }
         }
+        if (player.getPosition().equals(pos)) {
+            return player;
+        }
         return null;
     }
 
+    /**
+     * Called by entity as a request to the world to move to a different tile.
+     * This is the logic that decides how tiles interact with each-other.
+     * The semantic meaning of the Flag values are expressed in this code.
+     *
+     * @param entity   the entity trying to move
+     * @param movement the velocity of the entity
+     * @return true if entity moved, false otherwise
+     */
     public boolean moveEntity(IEntity entity, Vector2i movement) {
         // How many blocks an entity can push at once.
         int initialStrength = 2;
         return moveEntity(entity, movement, initialStrength);
     }
 
+    /**
+     * Called by entity as a request to the world to move to a different tile.
+     * This is the logic that decides how tiles interact with each-other.
+     * The semantic meaning of the Flag values are expressed in this code.
+     *
+     * @param entity   the entity trying to move
+     * @param movement the velocity of the entity
+     * @param strength how many blocks the entity can push, achieved via recursive calls to moveEntity
+     * @return true if entity moved, false otherwise
+     */
     public boolean moveEntity(IEntity entity, Vector2i movement, int strength) {
+
         if (movement.x() == 0 && movement.y() == 0) {
             return false;
         }
-        Vector2i new_pos = entity.getPosition().add(movement);
-        IEntity b = getEntityAt(new_pos);
 
-        Tile map_tile = map.getBlock(new_pos.x(), new_pos.y());
+        Vector2i newPos = entity.getPosition().add(movement);
+        IEntity entityAt = getEntityAt(newPos);
+        Tile mapTile = map.getBlock(newPos.x(), newPos.y());
 
-        if (new_pos.x() > 16 || new_pos.x() < 0 || new_pos.y() < 0) {
+        if (newPos.x() > 15 || newPos.x() < 0 || newPos.y() < 0) {
             return false;
         }
 
-
-        if (map_tile.is(Tile.Flag.Solid)) {
+        if (mapTile.is(Flag.Solid)) {
             return false;
         }
 
-        if (b == null) {
-            entity.setPosition(new_pos);
+        if (entityAt == null) {
+            entity.setPosition(newPos);
             return true;
         }
 
-        if (b.getTile().is(Tile.Flag.Movable) && strength > 0 && moveEntity(b, movement, strength - 1)) {
-            entity.setPosition(new_pos);
+        if (entityAt.flags().is(Flag.Movable) && strength > 0 && moveEntity(entityAt, movement, strength - 1)) {
+            entity.setPosition(newPos);
             return true;
         }
 
-        if (!b.getTile().is(Tile.Flag.Solid)) {
-            entity.setPosition(new_pos);
+        if (!entityAt.flags().is(Flag.Solid)) {
+            entity.setPosition(newPos);
             return true;
         }
 

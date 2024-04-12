@@ -14,31 +14,8 @@ public enum Tile {
     Boulder(Textures.Boulder.texture, Flag.Solid, Flag.Movable),
     Fog(Textures.Fog.texture);
 
-    public enum Flag {
-        Solid,
-        Movable,
-        Damaging;
-
-        Flag() {
-            if (ordinal() > 63)
-                throw new IllegalStateException("You can not have that many flags.");
-        }
-
-        private long val() {
-            return 1L << ordinal();
-        }
-
-        static private long join(Flag... flags) {
-            long v = 0L;
-            for (var flag : flags) {
-                v |= flag.val();
-            }
-            return v;
-        }
-    }
-
     public final Texture texture;
-    private final long flags;
+    public final Flag.Group flags;
 
     Tile(Texture texture, Flag... flags) {
         this.texture = texture;
@@ -46,37 +23,23 @@ public enum Tile {
     }
 
     public boolean is(Flag flag) {
-        return (this.flags & flag.val()) != 0;
+        return flags.is(flag);
     }
 
     public boolean isAllOf(Flag... flags) {
-        for (var f : flags) {
-            if (!is(f)) {
-                return false;
-            }
-        }
-        return true;
+        return this.flags.isAllOf(flags);
     }
 
     public boolean isOnly(Flag... flags) {
-        long v = this.flags;
-        for (var flag : flags) {
-            v ^= flag.val();
-        }
-        return v == 0L;
+        return this.flags.isOnly(flags);
     }
 
     public boolean isAnyOf(Flag... flags) {
-        for (var f : flags) {
-            if (is(f)) {
-                return true;
-            }
-        }
-        return false;
+        return this.flags.isAnyOf(flags);
     }
 
     public boolean isNoneOf(Flag... flags) {
-        return !isAnyOf(flags);
+        return this.flags.isNoneOf(flags);
     }
 
     public void draw(SpriteBatch sb, Vector2 position, Vector2 origin) {

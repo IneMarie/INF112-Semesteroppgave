@@ -1,5 +1,6 @@
 package inf112.skeleton.app.world;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import inf112.skeleton.app.animation.PositionLerp;
@@ -32,10 +33,14 @@ public class Entity implements IEntity {
         sb.draw(tile.texture, v2.x, v2.y, 1, 1);
     }
 
+    @Override
+    public Texture texture() {
+        return tile.texture;
+    }
 
     @Override
-    public Tile getTile() {
-        return tile;
+    public Flag.Group flags() {
+        return tile.flags;
     }
 
     @Override

@@ -92,7 +92,7 @@ public class Map {
                 case 'B' -> Tile.Boulder;
                 default -> throw new IllegalArgumentException("Invalid character in map: " + c);
             };
-            if (tile.is(Tile.Flag.Movable)) {
+            if (tile.is(Flag.Movable)) {
                 world.spawnEntity(
                         new Entity(
                                 tile,
