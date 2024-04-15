@@ -14,7 +14,6 @@ public class Player implements IEntity {
     private final PositionLerp positionLerp;
     private Vector2i position;
     private final World world;
-    private final GameScreen game;
     private static final Texture texture = Textures.Player.texture;
 
 
@@ -22,7 +21,6 @@ public class Player implements IEntity {
         this.position = position;
         this.world = world;
         positionLerp = new PositionLerp(this);
-        this.game = game;
     }
 
 
@@ -58,20 +56,7 @@ public class Player implements IEntity {
         world.moveEntity(this, movement);
         positionLerp.update(deltaSeconds);
 
-        if (checkIfGoalReached()) {
-            game.setGameWon();
-        }
     }
-
-
-    private boolean checkIfGoalReached() {
-        if (getPosition().x() == 12 && getPosition().y() == 16) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
 
     public void draw(SpriteBatch sb) {
         Vector2 v2 = positionLerp.getLerpedPosition();

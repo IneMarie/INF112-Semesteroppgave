@@ -90,6 +90,7 @@ public class Map {
                 case ' ' -> Tile.None;
                 case 'W' -> Tile.Wall;
                 case 'B' -> Tile.Boulder;
+                case 'G' -> Tile.Goal;
                 default -> throw new IllegalArgumentException("Invalid character in map: " + c);
             };
             if (tile.is(Flag.Movable)) {

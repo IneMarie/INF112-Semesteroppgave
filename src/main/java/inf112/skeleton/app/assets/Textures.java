@@ -14,11 +14,13 @@ public enum Textures {
     Fog("fog of war png.png"),
     Win("you win.png"),
     Dead("dead.png"),
-    Title("titleImage.png");
-    
+    Title("titleImage.png"),
+    Orb("Dungeon Crawl Stone Soup Full/dungeon/vaults/disco_ball.png");
+
 
     public final Texture texture;
-    Textures (String path) {
+
+    Textures(String path) {
         this.texture = new Texture(Gdx.files.internal(path));
     }
 

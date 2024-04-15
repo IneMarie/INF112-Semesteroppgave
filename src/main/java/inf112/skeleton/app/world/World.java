@@ -18,6 +18,7 @@ public class World {
     // TODO Entities can spawn, but are never removed. Remove entities that touch lava or something.
     private final List<IEntity> entities;
     private final Map map;
+    private final GameScreen game;
     private static final Texture fog = Textures.Fog.texture;
 
 
@@ -25,6 +26,7 @@ public class World {
 
         // TODO Load random map chunk from the maps folder. Keep loading and unloading maps as the player travels up.
 
+        this.game = game;
         this.player = new Player(new Vector2i(1, 1), this, game);
         this.entities = new ArrayList<>();
         this.map = new Map(this);
@@ -92,6 +94,10 @@ public class World {
 
         if (newPos.x() > 15 || newPos.x() < 0 || newPos.y() < 0) {
             return false;
+        }
+
+        if (entity.flags().is(Flag.Player) && mapTile.is(Flag.Goal)) {
+            game.setGameWon();
         }
 
         if (mapTile.is(Flag.Solid)) {

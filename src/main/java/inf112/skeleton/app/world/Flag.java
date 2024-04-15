@@ -6,6 +6,7 @@ public enum Flag {
     Movable,
     Damaging,
     Explosive,
+    Goal,
     ;
 
     Flag() {

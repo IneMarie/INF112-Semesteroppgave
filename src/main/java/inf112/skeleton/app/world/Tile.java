@@ -12,7 +12,8 @@ public enum Tile {
     Lava(Textures.Lava.texture, Flag.Damaging),
     Snake(Textures.Snake.texture, Flag.Damaging, Flag.Solid),
     Boulder(Textures.Boulder.texture, Flag.Solid, Flag.Movable),
-    Fog(Textures.Fog.texture);
+    Goal(Textures.Orb.texture, Flag.Goal, Flag.Solid, Flag.Movable),
+    ;
 
     public final Texture texture;
     public final Flag.Group flags;
