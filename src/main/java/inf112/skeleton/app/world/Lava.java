@@ -2,6 +2,8 @@ package inf112.skeleton.app.world;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
+import inf112.skeleton.app.assets.SoundEffect;
 import inf112.skeleton.app.assets.Textures;
 import inf112.skeleton.app.screens.GameScreen;
 
@@ -20,6 +22,8 @@ public class Lava {
   
   private static final Texture texture = Textures.Lava.texture;
   private static final Texture topTexture = Textures.LavaTop.texture;
+
+  private static final SoundEffect lavaSound = SoundEffect.LavaSFX;;
   
   /**
   * Creates lava that slowly rises
@@ -94,6 +98,7 @@ public class Lava {
     if (!reachedPlayerOrTop && timeElapsed >= lavaRiseTimer) {
       timeElapsed -= lavaRiseTimer;
       lavaHeight++;
+      lavaSound.play(0.25f);
     }
   }
 }
