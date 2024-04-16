@@ -4,8 +4,14 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 
 public enum SoundEffect {
-    Player_move("blipp.ogg"),
-    LavaSFX("blipp.ogg");
+    // TODO erstatt "blipp.ogg" med skikkelige sound effects
+    PlayerMoveSFX("blipp.ogg"),
+    LavaSFX("blipp.ogg"),
+    MoveEntitySFX("blipp.ogg"),
+
+    TitleScreenMusic("blipp.ogg"),
+    GameScreenMusic("blipp.ogg"),
+    GameOverScreenMusic("blipp.ogg");
 
     private final Sound sound;
 
