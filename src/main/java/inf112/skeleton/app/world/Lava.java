@@ -15,7 +15,7 @@ public class Lava {
   
   private Player player;
   private GameScreen game;
-  private int gridHeight = 16; // IKKE HARDKOD FIKS SENERE TODO!
+  private int gridCols = 16;
   private boolean reachedPlayerOrTop;
   
   private static final Texture texture = Textures.Lava.texture;
@@ -54,20 +54,20 @@ public class Lava {
     for (int y = 0; y < lavaHeight; y++) {
       // Smooth movement
       float smoothY = lavaStartValue + y + (float) 1 * timeElapsed / lavaRiseTimer;
-
+      
       // First row is its own texture
       if (y == lavaHeight - 1) {
-        for (int x = 0; x < gridHeight; x++) {
+        for (int x = 0; x < gridCols; x++) {
           batch.draw(topTexture, x, smoothY, 1, 1);
         }
       } else { // Rest of lava
-        for (int x = 0; x < gridHeight; x++) {
+        for (int x = 0; x < gridCols; x++) {
           batch.draw(texture, x, smoothY, 1, 1);
         }
       }
     }
   }
-
+  
   /**
   * Gets the y value for the lavas start position
   */
@@ -88,18 +88,12 @@ public class Lava {
   }
   
   /**
-  * The lava rises as long as it is lower than the map, and the player is still alive
+  * The lava rises as long as the player is still alive
   */
   public void checkAndRiseLava() {
     if (!reachedPlayerOrTop && timeElapsed >= lavaRiseTimer) {
       timeElapsed -= lavaRiseTimer;
-      if (lavaStartValue + lavaHeight < gridHeight) {
-        lavaHeight++;
-        //System.out.println("Lava høyde: " + lavaHeight);
-      } else {
-        reachedPlayerOrTop = true;
-        // System.out.println("Nådd toppen!");
-      }
+      lavaHeight++;
     }
   }
 }
