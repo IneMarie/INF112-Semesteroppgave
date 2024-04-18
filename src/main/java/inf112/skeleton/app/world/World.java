@@ -104,7 +104,7 @@ public class World {
 
         if (entity.flags().is(Flag.Player) && jointFlags.is(Flag.PowerUp)) {
             Player player = (Player) entity;
-            player.powerUp();
+            player.powerUp(20f);
             map.setBlock(newPos.x(), newPos.y(), Tile.None);
             entity.setPosition(newPos);
             return true;

@@ -25,9 +25,13 @@ public class Player implements IEntity {
         positionLerp = new PositionLerp(this);
     }
 
-    public void powerUp() {
+    /**
+     * Sets the Player state to PoweredUp.
+     * @param durationSeconds number of seconds the power-up state will be active
+     */
+    public void powerUp(float durationSeconds) {
         state = State.PoweredUp;
-        powerUpTimer = 0f;
+        powerUpTimer = durationSeconds;
     }
 
     public Vector2 getScreenPosition() {
@@ -62,9 +66,8 @@ public class Player implements IEntity {
         world.moveEntity(this, movement);
         positionLerp.update(deltaSeconds);
 
-        float powerUpDurationSeconds = 20f;
-        if (state.equals(State.PoweredUp) && powerUpTimer < powerUpDurationSeconds) {
-            powerUpTimer += deltaSeconds;
+        if (state.equals(State.PoweredUp) && powerUpTimer > 0f) {
+            powerUpTimer -= deltaSeconds;
         } else {
             state = State.Normal;
         }
