@@ -122,11 +122,13 @@ public class World {
         IEntity entityAt = getEntityAt(newPos);
         Tile mapTile = map.getBlock(newPos.x(), newPos.y());
 
+        Flag.Group jointFlags = mapTile.flags.union(entityAt.flags());
+
         if (newPos.x() > 15 || newPos.x() < 0 || newPos.y() < 0) {
             return false;
         }
 
-        if (entity.flags().is(Flag.Player) && mapTile.is(Flag.Goal)) {
+        if (entity.flags().is(Flag.Player) && jointFlags.is(Flag.Goal)) {
             game.setGameWon();
         }
 

@@ -28,10 +28,16 @@ public enum Flag {
 
     public static class Group {
 
+        public static final Group None = new Group(0);
+
         private final long flags;
 
         private Group(long flags) {
             this.flags = flags;
+        }
+
+        public Group union(Group other) {
+            return new Group(this.flags | other.flags);
         }
 
         public boolean is(Flag flag) {
