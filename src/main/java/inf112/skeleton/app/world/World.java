@@ -54,37 +54,7 @@ public class World {
         if (player.getPosition().equals(pos)) {
             return player;
         }
-        return new IEntity() {
-            @Override
-            public Vector2i getPosition() {
-                return Vector2i.zero;
-            }
-
-            @Override
-            public void setPosition(Vector2i new_position) {
-
-            }
-
-            @Override
-            public void update(float deltaSeconds) {
-
-            }
-
-            @Override
-            public void draw(SpriteBatch batch) {
-
-            }
-
-            @Override
-            public Texture texture() {
-                return Textures.Snake.texture;
-            }
-
-            @Override
-            public Flag.Group flags() {
-                return Flag.Group.None;
-            }
-        };
+        return IEntity.dummy;
     }
 
     /**
