@@ -3,6 +3,10 @@ package inf112.skeleton.app.assets;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 
+/**
+ * An enum of all textures used in the game.
+ * The number of textures is quite small, so we just load them all at startup and reuse them.
+ */
 public enum Textures {
     Player("Dungeon Crawl Stone Soup Full/player/base/centaur_darkbrown_male.png"),
     Floor("Dungeon Crawl Stone Soup Full/dungeon/floor/grass/grass0-dirt-mix_1.png"),
@@ -27,6 +31,9 @@ public enum Textures {
         this.texture = new Texture(Gdx.files.internal(path));
     }
 
+    /**
+     * Disposes all textures of this enum.
+     */
     public static void dispose() {
         for (var texture : values()) {
             texture.texture.dispose();

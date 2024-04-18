@@ -27,7 +27,7 @@ public class World {
         // TODO Load random map chunk from the maps folder. Keep loading and unloading maps as the player travels up.
 
         this.game = game;
-        this.player = new Player(new Vector2i(1, 1), this, game);
+        this.player = new Player(new Vector2i(1, 1), this);
         this.entities = new ArrayList<>();
         this.map = new Map(this);
         this.map.parseMapFile("maps/map1.txt"); // Example of stacking maps

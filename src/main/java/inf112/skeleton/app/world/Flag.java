@@ -1,5 +1,11 @@
 package inf112.skeleton.app.world;
 
+/**
+ * The flag enum is a number of bit-flags.
+ * Any time a tile or entity needs to interact with other entities in some unique way, a flag is added to this enum.
+ * Tiles and entities may then use these flags to describe themselves to the other entities and objects.
+ * Most of the actual interaction between tiles/entities is then implemented in the World.moveEntity method.
+ */
 public enum Flag {
     Player,
     Solid,
@@ -20,6 +26,11 @@ public enum Flag {
         return 1L << ordinal();
     }
 
+    /**
+     * Join the given flags into a single Group containing all flags.
+     * @param flags the flags to join
+     * @return Flag.Group containing all flags
+     */
     static public Group join(Flag... flags) {
         long v = 0L;
         for (var flag : flags) {
@@ -38,14 +49,29 @@ public enum Flag {
             this.flags = flags;
         }
 
+        /**
+         * Create a new Group containing all flags from this, other or both.
+         * @param other the other group to join
+         * @return the resulting Group
+         */
         public Group union(Group other) {
             return new Group(this.flags | other.flags);
         }
 
+        /**
+         * Check if the given flag is present within this Group.
+         * @param flag the flag to check for
+         * @return true if the flag is present in the Group, false otherwise
+         */
         public boolean is(Flag flag) {
             return (this.flags & flag.val()) != 0;
         }
 
+        /**
+         * Check if every single given flag is present within this Group.
+         * @param flags the flags to check for
+         * @return true if all flags are present, false otherwise
+         */
         public boolean isAllOf(Flag... flags) {
             for (var f : flags) {
                 if (!is(f)) {
@@ -55,14 +81,35 @@ public enum Flag {
             return true;
         }
 
+        /**
+         * Check if only the given flags are present within this group.
+         * @param flags the flags to check for
+         * @return true if only the given flags are present, false if any other flags are present
+         */
         public boolean isOnly(Flag... flags) {
+            long seen = 0;
+
             long v = this.flags;
             for (var flag : flags) {
-                v ^= flag.val();
+                var val = flag.val();
+
+                if ((seen & val) != 0) {
+                    // The xor below will be undone if the flag has already been seen.
+                    continue;
+                }
+
+                v ^= val;
+
+                seen |= val;
             }
             return v == 0L;
         }
 
+        /**
+         * Check if any of the given flags are present within this group.
+         * @param flags the flags to check for
+         * @return true if any of the given flags are present, false if none are
+         */
         public boolean isAnyOf(Flag... flags) {
             for (var f : flags) {
                 if (is(f)) {
@@ -72,6 +119,11 @@ public enum Flag {
             return false;
         }
 
+        /**
+         * Check that none of the given flags are present within this group.
+         * @param flags the flags to check for
+         * @return true if none of the given flags are present, false otherwise
+         */
         public boolean isNoneOf(Flag... flags) {
             return !isAnyOf(flags);
         }

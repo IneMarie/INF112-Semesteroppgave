@@ -5,8 +5,14 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import inf112.skeleton.app.assets.Textures;
 import inf112.skeleton.app.geometry.Vector2i;
 
+/**
+ * The interface of moving entities within a World.
+ */
 public interface IEntity {
 
+    /**
+     * May be used as a dummy value to avoid null-checks everywhere.
+     */
     IEntity dummy = new IEntity() {
         @Override
         public Vector2i getPosition() {

@@ -6,6 +6,10 @@ import com.badlogic.gdx.math.Vector2;
 import inf112.skeleton.app.animation.PositionLerp;
 import inf112.skeleton.app.geometry.Vector2i;
 
+/**
+ * A generic entity, with a tile and a position.
+ * Its behavior is defined by the flags the tile has, and the implementation of World.moveEntity.
+ */
 public class Entity implements IEntity {
 
     private Vector2i position;

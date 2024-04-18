@@ -38,48 +38,73 @@ public class AmateurInput {
         }
     }
 
+    /**
+     * Check if the given key was just pressed on this frame.
+     * @param key the key to check
+     * @return true if the key is down this frame and was up the previous frame, false otherwise
+     */
     public static boolean isKeyJustPressed(int key) {
         return (!prevKeyPressed[key]) && currKeyPressed[key];
     }
 
+    /**
+     * Check if the given key was just released on this frame.
+     * @param key the key to check
+     * @return true if the key is up this frame and was down the previous frame, false otherwise
+     */
     public static boolean isKeyJustReleased(int key) {
         return prevKeyPressed[key] && (!currKeyPressed[key]);
     }
 
+    /**
+     * Checks if the given key is down.
+     * @param key the key to check
+     * @return true if the key is down now.
+     */
     public static boolean isKeyPressed(int key) {
         return currKeyPressed[key];
     }
 
+    /**
+     * A simple abstraction on to define the controls of player movement.
+     * @return 1 if the player is trying to move up, -1 if the player is trying to move down and 0 if the player is not
+     * trying to move
+     */
     public static int playerMoveY() {
 
         int y_dir = 0;
         if (
-                isKeyJustPressed(com.badlogic.gdx.Input.Keys.W) ||
-                        isKeyJustPressed(com.badlogic.gdx.Input.Keys.UP)
+            isKeyJustPressed(com.badlogic.gdx.Input.Keys.W) ||
+            isKeyJustPressed(com.badlogic.gdx.Input.Keys.UP)
         ) {
             y_dir += 1;
         }
         if (
-                isKeyJustPressed(com.badlogic.gdx.Input.Keys.S) ||
-                        isKeyJustPressed(com.badlogic.gdx.Input.Keys.DOWN)
+            isKeyJustPressed(com.badlogic.gdx.Input.Keys.S) ||
+            isKeyJustPressed(com.badlogic.gdx.Input.Keys.DOWN)
         ) {
             y_dir -= 1;
         }
         return y_dir;
     }
 
+    /**
+     * A simple abstraction on to define the controls of player movement.
+     * @return 1 if the player is trying to move right, -1 if the player is trying to move left and 0 if the player is not
+     * trying to move
+     */
     public static int playerMoveX() {
 
         int x_dir = 0;
         if (
-                isKeyJustPressed(com.badlogic.gdx.Input.Keys.D) ||
-                        isKeyJustPressed(com.badlogic.gdx.Input.Keys.RIGHT)
+            isKeyJustPressed(com.badlogic.gdx.Input.Keys.D) ||
+            isKeyJustPressed(com.badlogic.gdx.Input.Keys.RIGHT)
         ) {
             x_dir += 1;
         }
         if (
-                isKeyJustPressed(com.badlogic.gdx.Input.Keys.A) ||
-                        isKeyJustPressed(com.badlogic.gdx.Input.Keys.LEFT)
+            isKeyJustPressed(com.badlogic.gdx.Input.Keys.A) ||
+            isKeyJustPressed(com.badlogic.gdx.Input.Keys.LEFT)
         ) {
             x_dir -= 1;
         }
@@ -87,6 +112,11 @@ public class AmateurInput {
 
     }
 
+    /**
+     * A simple abstraction on to define the controls of player movement.
+     * @return a vector representing the direction the player is trying to move, or the zero-vector if the player is not
+     * trying to move
+     */
     public static Vector2i playerMove() {
         return new Vector2i(playerMoveX(), playerMoveY());
     }
@@ -94,10 +124,4 @@ public class AmateurInput {
 
     private static final BitmapFont font = new BitmapFont();
 
-    public static void debug(SpriteBatch sb, float x, float y) {
-        font.draw(sb, "isRightJustPressed: %b\nisRightPressed    : %b".formatted(
-                isKeyJustPressed(com.badlogic.gdx.Input.Keys.RIGHT),
-                isKeyPressed(com.badlogic.gdx.Input.Keys.RIGHT)
-        ), x, y);
-    }
 }

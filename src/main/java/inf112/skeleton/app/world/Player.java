@@ -7,8 +7,11 @@ import inf112.skeleton.app.AmateurInput;
 import inf112.skeleton.app.animation.PositionLerp;
 import inf112.skeleton.app.assets.Textures;
 import inf112.skeleton.app.geometry.Vector2i;
-import inf112.skeleton.app.screens.GameScreen;
 
+/**
+ * A special entity controlled by the player of the game.
+ * It defines much of its own logic, but it still has to ask the world to move itself by use of World.moveEntity.
+ */
 public class Player implements IEntity {
 
     private final PositionLerp positionLerp;
@@ -19,7 +22,7 @@ public class Player implements IEntity {
     private float powerUpTimer = 0f;
 
 
-    public Player(Vector2i position, World world, GameScreen game) {
+    public Player(Vector2i position, World world) {
         this.position = position;
         this.world = world;
         positionLerp = new PositionLerp(this);
@@ -87,7 +90,7 @@ public class Player implements IEntity {
     }
 
 
-    private static enum State {
+    private enum State {
         Normal(Flag.Player),
         PoweredUp(Flag.Player, Flag.Breaking),
         ;

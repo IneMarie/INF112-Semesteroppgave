@@ -109,6 +109,12 @@ public class Map {
         tiles.add(tileRow);
     }
 
+    /**
+     * Set the tile on a position on the Map.
+     * @param x coordinate of the tile
+     * @param y coordinate of the tile
+     * @param tile new tile value
+     */
     public void setBlock(int x, int y, Tile tile) {
         y -= removedRowCount;
 

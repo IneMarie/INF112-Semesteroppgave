@@ -5,6 +5,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import inf112.skeleton.app.assets.Textures;
 
+/**
+ * An enum to describe simple tiles.
+ * A texture and some flags.
+ */
 public enum Tile {
     None(null),
     Floor(Textures.Floor.texture),
@@ -23,6 +27,9 @@ public enum Tile {
         this.texture = texture;
         this.flags = Flag.join(flags);
     }
+
+    //TODO  Remove the methods below and use this.flags.... everywhere instead so we don't have to keep the same
+    //      documentation up to date in two places.
 
     public boolean is(Flag flag) {
         return flags.is(flag);
