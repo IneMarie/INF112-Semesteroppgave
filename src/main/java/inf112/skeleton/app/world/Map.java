@@ -91,6 +91,7 @@ public class Map {
                 case 'W' -> Tile.Wall;
                 case 'B' -> Tile.Boulder;
                 case 'G' -> Tile.Goal;
+                case 'H' -> Tile.HammerPowerUp;
                 default -> throw new IllegalArgumentException("Invalid character in map: " + c);
             };
             if (tile.is(Flag.Movable)) {
@@ -106,6 +107,20 @@ public class Map {
             }
         }
         tiles.add(tileRow);
+    }
+
+    public void setBlock(int x, int y, Tile tile) {
+        y -= removedRowCount;
+
+        if (
+                !tiles.isEmpty()
+                        && 0 <= y
+                        && y < tiles.size()
+                        && 0 <= x
+                        && x < tiles.get(y).size()
+        ) {
+            tiles.get(y).set(x, tile);
+        }
     }
 
     /**

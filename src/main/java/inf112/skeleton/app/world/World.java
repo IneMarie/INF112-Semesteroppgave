@@ -102,6 +102,21 @@ public class World {
             game.setGameWon();
         }
 
+        if (entity.flags().is(Flag.Player) && jointFlags.is(Flag.PowerUp)) {
+            Player player = (Player) entity;
+            player.powerUp();
+            map.setBlock(newPos.x(), newPos.y(), Tile.None);
+            entity.setPosition(newPos);
+            return true;
+        }
+
+        if (entity.flags().is(Flag.Breaking) && mapTile.is(Flag.Breakable)) {
+            map.setBlock(newPos.x(), newPos.y(), Tile.None);
+            //TODO SFX and VFX
+            entity.setPosition(newPos);
+            return true;
+        }
+
         if (mapTile.is(Flag.Solid)) {
             return false;
         }

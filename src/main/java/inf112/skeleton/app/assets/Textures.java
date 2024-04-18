@@ -15,7 +15,10 @@ public enum Textures {
     Win("you win.png"),
     Dead("dead.png"),
     Title("titleImage.png"),
-    Orb("Dungeon Crawl Stone Soup Full/dungeon/vaults/disco_ball.png");
+    Orb("Dungeon Crawl Stone Soup Full/dungeon/vaults/disco_ball.png"),
+    HammerPowerUp("Dungeon Crawl Stone Soup Full/item/weapon/war_hammer.png"),
+    HammerPlayerImage("Dungeon Crawl Stone Soup Full/player/hand_right/hammer_3.png"),
+    ;
 
 
     public final Texture texture;

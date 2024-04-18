@@ -14,7 +14,9 @@ public class Player implements IEntity {
     private final PositionLerp positionLerp;
     private Vector2i position;
     private final World world;
-    private static final Texture texture = Textures.Player.texture;
+
+    private State state = State.Normal;
+    private float powerUpTimer = 0f;
 
 
     public Player(Vector2i position, World world, GameScreen game) {
@@ -23,6 +25,10 @@ public class Player implements IEntity {
         positionLerp = new PositionLerp(this);
     }
 
+    public void powerUp() {
+        state = State.PoweredUp;
+        powerUpTimer = 0f;
+    }
 
     public Vector2 getScreenPosition() {
         return positionLerp.getLerpedPosition();
@@ -56,23 +62,31 @@ public class Player implements IEntity {
         world.moveEntity(this, movement);
         positionLerp.update(deltaSeconds);
 
+        float powerUpDurationSeconds = 20f;
+        if (state.equals(State.PoweredUp) && powerUpTimer < powerUpDurationSeconds) {
+            powerUpTimer += deltaSeconds;
+        } else {
+            state = State.Normal;
+        }
     }
 
     public void draw(SpriteBatch sb) {
         Vector2 v2 = positionLerp.getLerpedPosition();
-        sb.draw(texture, v2.x, v2.y, 1, 1);
+        sb.draw(Textures.Player.texture, v2.x, v2.y, 1, 1);
+        if (state.equals(State.PoweredUp)) {
+            sb.draw(Textures.HammerPlayerImage.texture, v2.x, v2.y, 1, 1);
+        }
     }
 
     @Override
     public Texture texture() {
-        return texture;
+        return Textures.Player.texture;
     }
 
-    private State state = State.Normal;
 
     private static enum State {
         Normal(Flag.Player),
-        PoweredUp(Flag.Player, Flag.Explosive),
+        PoweredUp(Flag.Player, Flag.Breaking),
         ;
 
         private final Flag.Group flags;

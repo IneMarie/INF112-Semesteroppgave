@@ -5,8 +5,10 @@ public enum Flag {
     Solid,
     Movable,
     Damaging,
-    Explosive,
+    Breaking,
     Goal,
+    PowerUp,
+    Breakable,
     ;
 
     Flag() {

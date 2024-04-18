@@ -8,11 +8,12 @@ import inf112.skeleton.app.assets.Textures;
 public enum Tile {
     None(null),
     Floor(Textures.Floor.texture),
-    Wall(Textures.Wall.texture, Flag.Solid),
+    Wall(Textures.Wall.texture, Flag.Solid, Flag.Breakable),
     Lava(Textures.Lava.texture, Flag.Damaging),
     Snake(Textures.Snake.texture, Flag.Damaging, Flag.Solid),
     Boulder(Textures.Boulder.texture, Flag.Solid, Flag.Movable),
     Goal(Textures.Orb.texture, Flag.Goal, Flag.Solid, Flag.Movable),
+    HammerPowerUp(Textures.HammerPowerUp.texture, Flag.PowerUp)
     ;
 
     public final Texture texture;
