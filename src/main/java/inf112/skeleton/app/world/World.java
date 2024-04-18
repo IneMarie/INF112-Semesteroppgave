@@ -57,6 +57,11 @@ public class World {
         return IEntity.dummy;
     }
 
+    private boolean removeEntity(IEntity entity) {
+        if (entity == IEntity.dummy) return false;
+        return entities.remove(entity);
+    }
+
     /**
      * Called by entity as a request to the world to move to a different tile.
      * This is the logic that decides how tiles interact with each-other.
@@ -103,15 +108,19 @@ public class World {
         }
 
         if (entity.flags().is(Flag.Player) && jointFlags.is(Flag.PowerUp)) {
+            map.setBlock(newPos.x(), newPos.y(), Tile.None);
+            removeEntity(entityAt);
+
             Player player = (Player) entity;
             player.powerUp(20f);
-            map.setBlock(newPos.x(), newPos.y(), Tile.None);
             entity.setPosition(newPos);
             return true;
         }
 
         if (entity.flags().is(Flag.Breaking) && mapTile.is(Flag.Breakable)) {
             map.setBlock(newPos.x(), newPos.y(), Tile.None);
+            removeEntity(entityAt);
+
             //TODO SFX and VFX
             entity.setPosition(newPos);
             return true;
