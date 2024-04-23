@@ -10,6 +10,7 @@ public class ScreenManager extends Game {
     private Screen gameScreen;
     private Screen gameOverScreen;
     private Screen winScreen;
+    private Screen infoScreen;
 
     @Override
     public void create() {
@@ -17,6 +18,7 @@ public class ScreenManager extends Game {
         // Creates screens
         restartGame();
         titleScreen = new TitleScreen(this);
+        infoScreen = new InfoScreen(this);
         gameOverScreen = new GameOverScreen(this);
         winScreen = new WinScreen(this);
 
@@ -59,6 +61,12 @@ public class ScreenManager extends Game {
         setScreen(winScreen);
     }
 
+      /**
+     * Switches to infoScreen
+     */
+    public void showInfoScreen() {
+      setScreen(infoScreen);
+    }
 
     /**
      * Starts a new game
