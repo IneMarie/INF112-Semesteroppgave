@@ -5,9 +5,14 @@ import com.badlogic.gdx.audio.Sound;
 
 public enum SoundEffect {
     // TODO erstatt "blipp.ogg" med skikkelige sound effects
-    PlayerMoveSFX("blipp.ogg"),
-    LavaSFX("blipp.ogg"),
-    MoveEntitySFX("blipp.ogg"),
+    PlayerMoveSFX("blipp.ogg"), // spilleren flytter seg
+    LavaRiseSFX("blipp.ogg"), // Spiller hver gang lavaen stiger
+    LavaAmbiance("blipp.ogg"), // Lava vibes
+    PlayerDeathSFX("blipp.ogg"), // spilleren dør av lava
+    MoveEntitySFX("blipp.ogg"), // spilleren flytter en stein
+    PowerUpSFX("blipp.ogg"), // spilleren plukker opp en power up
+    DestroyEntitySFX("blipp.ogg"), // spilleren ødelegger en entity (powerup)
+
 
     TitleScreenMusic("blipp.ogg"),
     GameScreenMusic("blipp.ogg"),
