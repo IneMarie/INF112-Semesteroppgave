@@ -23,7 +23,9 @@ public class Lava {
   private static final Texture texture = Textures.Lava.texture;
   private static final Texture topTexture = Textures.LavaTop.texture;
 
-  private static final SoundEffect lavaSound = SoundEffect.LavaSFX;;
+  private static final SoundEffect lavaRiseSFX = SoundEffect.LavaRiseSFX;
+  private static final SoundEffect lavaAmbiance = SoundEffect.LavaAmbiance;
+  private static final SoundEffect playerDeathSFX = SoundEffect.PlayerDeathSFX;
   
   /**
   * Creates lava that slowly rises
@@ -48,6 +50,7 @@ public class Lava {
     timeElapsed += deltaSeconds;
     if (playerLavaDeath() && !reachedPlayerOrTop) {
       reachedPlayerOrTop = true;
+      playerDeathSFX.play(0.25f);
       game.setGameOver();
     } else {
       checkAndRiseLava();
@@ -98,7 +101,7 @@ public class Lava {
     if (!reachedPlayerOrTop && timeElapsed >= lavaRiseTimer) {
       timeElapsed -= lavaRiseTimer;
       lavaHeight++;
-      lavaSound.play(0.25f);
+      lavaRiseSFX.play(0.25f);
     }
   }
 }

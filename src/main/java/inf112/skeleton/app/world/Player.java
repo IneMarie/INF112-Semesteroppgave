@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import inf112.skeleton.app.AmateurInput;
 import inf112.skeleton.app.animation.PositionLerp;
+import inf112.skeleton.app.assets.SoundEffect;
 import inf112.skeleton.app.assets.Textures;
 import inf112.skeleton.app.geometry.Vector2i;
 
@@ -21,6 +22,10 @@ public class Player implements IEntity {
     private State state = State.Normal;
     private float powerUpTimer = 0f;
 
+    private static final SoundEffect playerMoveSFX = SoundEffect.PlayerMoveSFX;
+    private static final SoundEffect powerUpSFX = SoundEffect.PowerUpSFX;
+
+
 
     public Player(Vector2i position, World world) {
         this.position = position;
@@ -35,6 +40,7 @@ public class Player implements IEntity {
     public void powerUp(float durationSeconds) {
         state = State.PoweredUp;
         powerUpTimer = durationSeconds;
+        powerUpSFX.play(0.25f);
     }
 
     public Vector2 getScreenPosition() {
@@ -61,8 +67,10 @@ public class Player implements IEntity {
 
         Vector2i movement = input;
         if (input.x() != 0) {
+            playerMoveSFX.play(0.25f);
             movement = new Vector2i(input.x(), 0);
         } else if (input.y() != 0) {
+            playerMoveSFX.play(0.25f);
             movement = new Vector2i(0, input.y());
         }
 
