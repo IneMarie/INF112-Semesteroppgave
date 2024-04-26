@@ -54,6 +54,8 @@ public class World {
         if (player.getPosition().equals(pos)) {
             return player;
         }
+
+        IEntity.dummy.setPosition(pos);
         return IEntity.dummy;
     }
 

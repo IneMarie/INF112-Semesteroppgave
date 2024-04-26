@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.Texture;
  * The number of textures is quite small, so we just load them all at startup and reuse them.
  */
 public enum Textures {
+    Missing("Dungeon Crawl Stone Soup Full/gui/prompt_no.png"),
     Player("Dungeon Crawl Stone Soup Full/player/base/centaur_darkbrown_male.png"),
     Floor("Dungeon Crawl Stone Soup Full/dungeon/floor/grass/grass0-dirt-mix_1.png"),
     Wall("Dungeon Crawl Stone Soup Full/dungeon/wall/brick_brown_2.png"),
