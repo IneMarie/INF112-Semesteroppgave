@@ -30,10 +30,7 @@ public class World {
         this.player = new Player(new Vector2i(1, 1), this);
         this.entities = new ArrayList<>();
         this.map = new Map(this);
-        this.map.parseMapFile("maps/map1.txt"); // Example of stacking maps
-        this.map.parseMapFile("maps/map1.txt");
-        this.map.parseMapFile("maps/map1.txt");
-        this.map.parseMapFile("maps/map1.txt");
+        this.map.parseMapFile("maps/map1.txt"); 
         this.lava = new Lava(0, 5, this.player, game);
     }
 
