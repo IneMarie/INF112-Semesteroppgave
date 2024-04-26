@@ -12,6 +12,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 
 import inf112.skeleton.app.AmateurInput;
 import inf112.skeleton.app.CameraController2D;
+import inf112.skeleton.app.assets.SoundEffect;
 import inf112.skeleton.app.assets.Textures;
 import inf112.skeleton.app.world.World;
 
@@ -96,6 +97,12 @@ public class GameScreen implements Screen {
         if (AmateurInput.isKeyJustPressed(Input.Keys.ESCAPE)) {
             screenManager.restartGame();
             screenManager.showTitleScreen();
+            SoundEffect.GameMusic.stop();
+            SoundEffect.LavaAmbience.stop();
+            SoundEffect.SelectSFX.play(0.25f);
+            SoundEffect.GameMusic.loop(0.30f);
+            
+
         }
         
     }
@@ -126,10 +133,18 @@ public class GameScreen implements Screen {
     
     public void setGameOver() {
         System.out.println("Player died to lava");
+        SoundEffect.LavaAmbience.stop();
+        SoundEffect.GameMusic.stop();
+        SoundEffect.PlayerDeathSFX.play(0.5f);
+        SoundEffect.GameOverMusic.loop(0.25f);
         screenManager.showGameOverScreen();
     }
     
     public void setGameWon() {
+        SoundEffect.LavaAmbience.stop();
+        SoundEffect.GameMusic.stop();
+        SoundEffect.PlayerWinSFX.play(0.5f);
+        SoundEffect.GameWinMusic.loop(0.25f);
         screenManager.showWinScreen();
     }
 }

@@ -21,10 +21,7 @@ public class Player implements IEntity {
 
     private State state = State.Normal;
     private float powerUpTimer = 0f;
-
-    private static final SoundEffect playerMoveSFX = SoundEffect.PlayerMoveSFX;
-    private static final SoundEffect powerUpSFX = SoundEffect.PowerUpSFX;
-
+    
 
 
     public Player(Vector2i position, World world) {
@@ -40,7 +37,6 @@ public class Player implements IEntity {
     public void powerUp(float durationSeconds) {
         state = State.PoweredUp;
         powerUpTimer = durationSeconds;
-        powerUpSFX.play(0.25f);
     }
 
     public Vector2 getScreenPosition() {
@@ -67,10 +63,8 @@ public class Player implements IEntity {
 
         Vector2i movement = input;
         if (input.x() != 0) {
-            playerMoveSFX.play(0.25f);
             movement = new Vector2i(input.x(), 0);
         } else if (input.y() != 0) {
-            playerMoveSFX.play(0.25f);
             movement = new Vector2i(0, input.y());
         }
 

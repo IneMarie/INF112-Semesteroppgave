@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 import inf112.skeleton.app.AmateurInput;
 import inf112.skeleton.app.CameraController2D;
+import inf112.skeleton.app.assets.SoundEffect;
 import inf112.skeleton.app.assets.Textures;
 
 public class TitleScreen implements Screen {
@@ -25,6 +26,8 @@ public class TitleScreen implements Screen {
     uiCamera = new CameraController2D(720);
     uiCamera.screenAnchor.x = 0f;
     uiCamera.screenAnchor.y = 0f;
+
+    SoundEffect.GameMusic.loop(0.30f);
   }
   
   @Override
@@ -46,6 +49,7 @@ public class TitleScreen implements Screen {
     // Sjekker om Enter
     if (AmateurInput.isKeyJustPressed(Input.Keys.ENTER)) {
       screenManager.showInfoScreen();
+      SoundEffect.SelectSFX.play(0.25f);     
     }
   }
   

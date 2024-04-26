@@ -1,8 +1,11 @@
 package inf112.skeleton.app.world;
 
+import com.badlogic.gdx.backends.lwjgl3.audio.Mp3.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+
+import inf112.skeleton.app.assets.SoundEffect;
 import inf112.skeleton.app.assets.Textures;
 import inf112.skeleton.app.geometry.Vector2i;
 import inf112.skeleton.app.screens.GameScreen;
@@ -32,6 +35,7 @@ public class World {
         this.map = new Map(this);
         this.map.parseMapFile("maps/map1.txt"); 
         this.lava = new Lava(0, 5, this.player, game);
+
     }
 
     public Vector2 getPlayerScreenPosition() {
@@ -113,6 +117,9 @@ public class World {
             Player player = (Player) entity;
             player.powerUp(20f);
             entity.setPosition(newPos);
+            SoundEffect.PlayerMoveSFX.play(0.10f);
+            SoundEffect.PowerUpSFX.play(0.10f);
+
             return true;
         }
 
@@ -120,7 +127,8 @@ public class World {
             map.setBlock(newPos.x(), newPos.y(), Tile.None);
             removeEntity(entityAt);
 
-            //TODO SFX and VFX
+            SoundEffect.PlayerMoveSFX.play(0.10f);
+            SoundEffect.DestroyEntitySFX.play(0.10f);
             entity.setPosition(newPos);
             return true;
         }
@@ -131,11 +139,14 @@ public class World {
 
         if (entityAt.flags().is(Flag.Movable) && strength > 0 && moveEntity(entityAt, movement, strength - 1)) {
             entity.setPosition(newPos);
+            SoundEffect.PlayerMoveSFX.play(0.10f);
+            SoundEffect.MoveEntitySFX.play(0.15f);
             return true;
         }
 
         if (!entityAt.flags().is(Flag.Solid)) {
             entity.setPosition(newPos);
+            SoundEffect.PlayerMoveSFX.play(0.10f);
             return true;
         }
 
@@ -158,5 +169,6 @@ public class World {
         player.draw(batch);
         lava.draw(batch);
         batch.draw(fog, player.getScreenPosition().x - 21.5f, player.getScreenPosition().y - 21.5f, 44, 44);
+
     }
 }

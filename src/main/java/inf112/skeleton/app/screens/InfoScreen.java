@@ -9,6 +9,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 
 import inf112.skeleton.app.AmateurInput;
 import inf112.skeleton.app.CameraController2D;
+import inf112.skeleton.app.assets.SoundEffect;
 import inf112.skeleton.app.assets.Textures;
 
 public class InfoScreen implements Screen{
@@ -48,9 +49,14 @@ public class InfoScreen implements Screen{
       if (AmateurInput.isKeyJustPressed(Input.Keys.ENTER)) {
           screenManager.restartGame();
           screenManager.showGameScreen();
+          SoundEffect.SelectSFX.play(0.25f);
+          SoundEffect.LavaAmbience.loop(0.20f);
+
       }
       if (AmateurInput.isKeyJustPressed(Input.Keys.ESCAPE)) {
         screenManager.showTitleScreen();
+        SoundEffect.SelectSFX.play(0.25f);
+
     }
   }
 

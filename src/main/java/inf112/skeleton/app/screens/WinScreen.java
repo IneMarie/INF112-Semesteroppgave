@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 import inf112.skeleton.app.AmateurInput;
 import inf112.skeleton.app.CameraController2D;
+import inf112.skeleton.app.assets.SoundEffect;
 import inf112.skeleton.app.assets.Textures;
 
 public class WinScreen implements Screen {
@@ -47,6 +48,11 @@ public class WinScreen implements Screen {
         if (AmateurInput.isKeyJustPressed(Input.Keys.ENTER)) {
             screenManager.restartGame();
             screenManager.showGameScreen();
+            SoundEffect.GameWinMusic.stop();
+            SoundEffect.SelectSFX.play(0.25f);
+            SoundEffect.GameMusic.loop(0.30f);
+            SoundEffect.LavaAmbience.loop(0.20f);
+
         }
 
     }

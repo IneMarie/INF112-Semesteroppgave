@@ -5,18 +5,20 @@ import com.badlogic.gdx.audio.Sound;
 
 public enum SoundEffect {
     // TODO erstatt "blipp.ogg" med skikkelige sound effects
-    PlayerMoveSFX("blipp.ogg"), // spilleren flytter seg
-    LavaRiseSFX("blipp.ogg"), // Spiller hver gang lavaen stiger
-    LavaAmbiance("blipp.ogg"), // Lava vibes
-    PlayerDeathSFX("blipp.ogg"), // spilleren dør av lava
-    MoveEntitySFX("blipp.ogg"), // spilleren flytter en stein
-    PowerUpSFX("blipp.ogg"), // spilleren plukker opp en power up
-    DestroyEntitySFX("blipp.ogg"), // spilleren ødelegger en entity (powerup)
+    PlayerMoveSFX("footstep.wav"), // spilleren flytter seg
+    LavaAmbience("lava ambience.wav"), // Lava vibes
+    PlayerDeathSFX("Player Death.wav"), // spilleren dør av lava
+    MoveEntitySFX("Boulder Push.wav"), // spilleren flytter en stein
+    PowerUpSFX("Powerup.wav"), // spilleren plukker opp en power up
+    DestroyEntitySFX("Explosion6.wav"), // spilleren ødelegger en entity (powerup)
+    SelectSFX("Select.wav"), // spilleren endrer screen
+    PlayerWinSFX("game win.wav"), //spilleren vinner spillet
 
 
-    TitleScreenMusic("blipp.ogg"),
-    GameScreenMusic("blipp.ogg"),
-    GameOverScreenMusic("blipp.ogg");
+    GameWinMusic("game win music.wav"),
+    GameOverMusic("game over music.wav"),
+    GameMusic("game music.wav");
+
 
     private final Sound sound;
 
@@ -34,6 +36,10 @@ public enum SoundEffect {
 
     public void stop() {
         sound.stop();
+    }
+
+    public void loop(float volume) {
+        sound.loop(volume);
     }
 
     public void dispose() {
