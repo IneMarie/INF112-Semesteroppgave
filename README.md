@@ -16,7 +16,7 @@ Top down 2d spill, der man beveger spilleren enten ved bruk WASD eller piltasten
 * Kjør Main i din IDE
 
 ## Kjente feil
-Man kan dytte steiner ut av kartet
+
 
 ## Viktige lenker
 [Semesteroppgave krav](https://git.app.uib.no/inf112/24v/inf112-24v/-/wikis/prosjekt/semesteroppgave)
