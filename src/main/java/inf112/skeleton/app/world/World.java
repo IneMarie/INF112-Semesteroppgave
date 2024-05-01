@@ -98,7 +98,7 @@ public class World {
 
         Flag.Group jointFlags = mapTile.flags.union(entityAt.flags());
 
-        if (newPos.x() > 15 || newPos.x() < 0 || newPos.y() < 0) {
+        if (newPos.x() > 15 || newPos.x() < 0 || newPos.y() < 0 || newPos.y() > 47) {
             return false;
         }
 
@@ -111,7 +111,7 @@ public class World {
             removeEntity(entityAt);
 
             Player player = (Player) entity;
-            player.powerUp(20f);
+            player.powerUp(3f);
             entity.setPosition(newPos);
             SoundEffect.PlayerMoveSFX.play(0.10f);
             SoundEffect.PowerUpSFX.play(0.10f);
