@@ -115,7 +115,7 @@ public class World {
             removeEntity(entityAt);
 
             Player player = (Player) entity;
-            player.powerUp(20f);
+            player.powerUp(3f);
             entity.setPosition(newPos);
             SoundEffect.PlayerMoveSFX.play(0.10f);
             SoundEffect.PowerUpSFX.play(0.10f);
