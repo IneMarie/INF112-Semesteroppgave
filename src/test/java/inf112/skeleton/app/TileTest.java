@@ -21,85 +21,48 @@ public class TileTest {
 
         Gdx.gl = mock(GL20.class);
         HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
-        ApplicationListener listener = new ApplicationListener() {
-
-            @Override
-            public void create() {
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void resize(int width, int height) {
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void render() {
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void pause() {
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void resume() {
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void dispose() {
-                // TODO Auto-generated method stub
-
-            }
-        };
+        ApplicationListener listener = mock(ApplicationListener.class);
         new HeadlessApplication(listener, config);
     }
 
     @Test
     void is() {
-        assert (Tile.Snake.is(Flag.Damaging));
-        assert (Tile.Snake.is(Flag.Solid));
-        assert (!Tile.Snake.is(Flag.Movable));
+        assert Tile.Snake.is(Flag.Damaging);
+        assert Tile.Snake.is(Flag.Solid);
+        assert !Tile.Snake.is(Flag.Movable);
     }
 
     @Test
     void allOf() {
-        assert (Tile.Snake.isAllOf(Flag.Damaging));
-        assert (Tile.Snake.isAllOf(Flag.Solid));
-        assert (Tile.Snake.isAllOf(Flag.Damaging, Flag.Solid));
-        assert (Tile.Snake.isAllOf());
-        assert (!Tile.Snake.isAllOf(Flag.Movable));
+        assert Tile.Snake.isAllOf(Flag.Damaging);
+        assert Tile.Snake.isAllOf(Flag.Solid);
+        assert Tile.Snake.isAllOf(Flag.Damaging, Flag.Solid);
+        assert Tile.Snake.isAllOf();
+        assert !Tile.Snake.isAllOf(Flag.Movable);
     }
 
     @Test
     void only() {
-        assert (Tile.Snake.isOnly(Flag.Solid, Flag.Damaging));
-        assert (!Tile.Snake.isOnly(Flag.Damaging));
-        assert (!Tile.Snake.isOnly(Flag.Solid));
-        assert (!Tile.Snake.isOnly(Flag.Movable));
-        assert (Tile.Floor.isOnly());
+        assert Tile.Snake.isOnly(Flag.Solid, Flag.Damaging);
+        assert !Tile.Snake.isOnly(Flag.Damaging);
+        assert !Tile.Snake.isOnly(Flag.Solid);
+        assert !Tile.Snake.isOnly(Flag.Movable);
+        assert Tile.Floor.isOnly();
     }
 
     @Test
     void any() {
-        assert (Tile.Snake.isAnyOf(Flag.Solid, Flag.Movable, Flag.Damaging));
-        assert (Tile.Snake.isAnyOf(Flag.Solid, Flag.Damaging));
-        assert (Tile.Snake.isAnyOf(Flag.Damaging));
-        assert (!Tile.Snake.isAnyOf(Flag.Movable));
+        assert Tile.Snake.isAnyOf(Flag.Solid, Flag.Movable, Flag.Damaging);
+        assert Tile.Snake.isAnyOf(Flag.Solid, Flag.Damaging);
+        assert Tile.Snake.isAnyOf(Flag.Damaging);
+        assert !Tile.Snake.isAnyOf(Flag.Movable);
     }
 
     @Test
     void none() {
-        assert (Tile.Snake.isNoneOf(Flag.Movable));
-        assert (Tile.Wall.isNoneOf(Flag.Movable, Flag.Damaging));
-        assert (Tile.Lava.isNoneOf(Flag.Movable, Flag.Solid));
-        assert (Tile.Floor.isNoneOf(Flag.Movable, Flag.Solid, Flag.Damaging));
+        assert Tile.Snake.isNoneOf(Flag.Movable);
+        assert Tile.Wall.isNoneOf(Flag.Movable, Flag.Damaging);
+        assert Tile.Lava.isNoneOf(Flag.Movable, Flag.Solid);
+        assert Tile.Floor.isNoneOf(Flag.Movable, Flag.Solid, Flag.Damaging);
     }
 }
