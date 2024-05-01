@@ -1,10 +1,8 @@
 package inf112.skeleton.app.world;
 
-import com.badlogic.gdx.backends.lwjgl3.audio.Mp3.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-
 import inf112.skeleton.app.assets.SoundEffect;
 import inf112.skeleton.app.assets.Textures;
 import inf112.skeleton.app.geometry.Vector2i;
@@ -18,7 +16,6 @@ public class World {
     private final Lava lava;
     private final Player player;
 
-    // TODO Entities can spawn, but are never removed. Remove entities that touch lava or something.
     private final List<IEntity> entities;
     private final Map map;
     private final GameScreen game;
@@ -27,13 +24,12 @@ public class World {
 
     public World(GameScreen game) {
 
-        // TODO Load random map chunk from the maps folder. Keep loading and unloading maps as the player travels up.
 
         this.game = game;
         this.player = new Player(new Vector2i(1, 1), this);
         this.entities = new ArrayList<>();
         this.map = new Map(this);
-        this.map.parseMapFile("maps/map1.txt"); 
+        this.map.parseMapFile("maps/map1.txt");
         this.lava = new Lava(0, 5, this.player, game);
 
     }
@@ -46,7 +42,7 @@ public class World {
         entities.add(e);
     }
 
-    private IEntity getEntityAt(Vector2i pos) {
+    public IEntity getEntityAt(Vector2i pos) {
         for (var ent : entities) {
             if (ent.getPosition().equals(pos)) {
                 return ent;

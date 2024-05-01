@@ -55,7 +55,7 @@ public class Map {
      * @return number of rows actually removed
      */
     public int removeBottomRows(int count) {
-        var removed = Math.max(count, 0);
+        var removed = Math.min(Math.max(count, 0), tiles.size());
         var remaining = tiles.size() - removed;
 
         for (int i = 0; i < remaining; i++) {
@@ -111,8 +111,9 @@ public class Map {
 
     /**
      * Set the tile on a position on the Map.
-     * @param x coordinate of the tile
-     * @param y coordinate of the tile
+     *
+     * @param x    coordinate of the tile
+     * @param y    coordinate of the tile
      * @param tile new tile value
      */
     public void setBlock(int x, int y, Tile tile) {
