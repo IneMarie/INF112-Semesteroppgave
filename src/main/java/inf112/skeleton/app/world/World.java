@@ -102,7 +102,7 @@ public class World {
 
         Flag.Group jointFlags = mapTile.flags.union(entityAt.flags());
 
-        if (newPos.x() > 15 || newPos.x() < 0 || newPos.y() < 0) {
+        if (newPos.x() > 15 || newPos.x() < 0 || newPos.y() < 0 || newPos.y() > 47) {
             return false;
         }
 
