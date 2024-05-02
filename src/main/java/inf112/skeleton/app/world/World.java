@@ -30,7 +30,7 @@ public class World {
         this.entities = new ArrayList<>();
         this.map = new Map(this);
         this.map.parseMapFile("maps/map1.txt");
-        this.lava = new Lava(0, 5, this.player, game);
+        this.lava = new Lava(-7, 2, this.player, game);
 
     }
 
