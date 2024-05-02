@@ -9,9 +9,9 @@ import com.badlogic.gdx.graphics.Texture;
  */
 public enum Textures {
     Missing("Dungeon Crawl Stone Soup Full/gui/prompt_no.png"),
-    Player("Dungeon Crawl Stone Soup Full/player/base/centaur_darkbrown_male.png"),
-    Floor("Dungeon Crawl Stone Soup Full/dungeon/floor/grass/grass0-dirt-mix_1.png"),
-    Wall("Dungeon Crawl Stone Soup Full/dungeon/wall/brick_brown_2.png"),
+    Player("sandergfx/player.png"),
+    Floor("sandergfx/floor.png"),
+    Wall("sandergfx/wall.png"),
     Lava("lava.png"),
     LavaTop("lavatop.png"),
     Snake("Dungeon Crawl Stone Soup Full/monster/animals/snake.png"),
@@ -21,8 +21,8 @@ public enum Textures {
     Dead("dead.png"),
     Title("titleImage.png"),
     Info("infoscreen.png"),
-    Orb("Dungeon Crawl Stone Soup Full/dungeon/vaults/disco_ball.png"),
-    HammerPowerUp("Dungeon Crawl Stone Soup Full/item/weapon/war_hammer.png"),
+    Orb("sandergfx/point.png"),
+    HammerPowerUp("sandergfx/war_hammer.png"),
     HammerPlayerImage("Dungeon Crawl Stone Soup Full/player/hand_right/hammer_3.png"),
     ;
 

@@ -13,7 +13,11 @@
 Top down 2d spill, der man beveger spilleren enten ved bruk WASD eller piltastene for å navigere et labyrint-lignende kart. Kartet har hindringer i form av steiner som kan dyttes, og en stadig stigende lava. Dersom lavaen treffer spilleren dør man, og får game over. Dersom man når toppen av kartet vinner man.
 
 ## Kjøring
-* Kjør Main i din IDE
+* Kjør Main i din IDE eller kjør med cmd
+`mvn exec:java`. 
+Når du kjører programmet burde du få opp startskjermen der det står "Block-Pain", hvis ikke kan det hende du må compile programmet med `mvn compile`
+du kan også kjøre og compile det samtidig ved å trykke her ==> `mvn compile exec:java` (kan hende du må skrive det i terminalen).
+* Spillet burde være kompatibelt med de fleste operativsystemer
 
 ## Kjente feil
 Ingen som vi vet om
