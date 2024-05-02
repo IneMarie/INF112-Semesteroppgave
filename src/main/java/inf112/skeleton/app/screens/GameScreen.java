@@ -107,7 +107,7 @@ public class GameScreen extends ScreenAdapter {
     }
     
     public void setGameOver() {
-        System.out.println("Player died to lava");
+        //System.out.println("Player died to lava");
         SoundEffect.LavaAmbience.stop();
         SoundEffect.GameMusic.stop();
         SoundEffect.PlayerDeathSFX.play(0.5f);

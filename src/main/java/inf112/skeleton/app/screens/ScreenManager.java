@@ -6,11 +6,11 @@ import inf112.skeleton.app.AmateurInput;
 
 public class ScreenManager extends Game {
 
-    private Screen titleScreen;
-    private Screen gameScreen;
-    private Screen gameOverScreen;
-    private Screen winScreen;
-    private Screen infoScreen;
+    public Screen titleScreen;
+    public Screen gameScreen;
+    public Screen gameOverScreen;
+    public Screen winScreen;
+    public Screen infoScreen;
 
     @Override
     public void create() {
