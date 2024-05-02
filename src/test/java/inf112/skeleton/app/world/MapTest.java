@@ -24,8 +24,7 @@ class MapTest {
         HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
         ApplicationListener listener = mock(ApplicationListener.class);
         new HeadlessApplication(listener, config);
-
-        world = new World(mock(GameScreen.class));
+        world = new World(mock(GameScreen.class), "maps/map1.txt");
         map = new Map(world);
     }
 
@@ -85,10 +84,15 @@ class MapTest {
     void setBlock() {
         map.parseMapFile(path);
 
-        final int x = 3; // arbitrary
-        final int y = 3;
+        int x = 3; // arbitrary
+        int y = 3;
 
         map.setBlock(x, y, Tile.Snake);
         assert map.getBlock(x, y).equals(Tile.Snake);
+
+        x = -1; // outside the map
+        y = -1;
+        map.setBlock(x, y, Tile.Snake);
+        assert map.getBlock(x, y).equals(Tile.None);
     }
 }

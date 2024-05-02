@@ -48,6 +48,10 @@ public interface IEntity {
         }
     };
 
+    static IEntity BasicEntity(Vector2i pos, Tile tile) {
+        return new Entity(tile, pos);
+    }
+
     Vector2i getPosition();
 
     void setPosition(Vector2i new_position);

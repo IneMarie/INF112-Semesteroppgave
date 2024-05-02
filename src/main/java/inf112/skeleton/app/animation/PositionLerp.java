@@ -12,7 +12,7 @@ public class PositionLerp {
 
     IEntity entity;
     Vector2i previous_pos;
-    private static final float secondsToMove = 0.1f;
+    public static final float secondsToMove = 0.1f;
     private boolean isMoving = false;
     private float secondsMoved;
     private Vector2 moveFrom = new Vector2();

@@ -22,14 +22,16 @@ public class World {
     private static final Texture fog = Textures.Fog.texture;
 
 
-    public World(GameScreen game) {
+    public World(GameScreen game, String mapPath) {
 
 
         this.game = game;
         this.player = new Player(new Vector2i(1, 1), this);
         this.entities = new ArrayList<>();
         this.map = new Map(this);
-        this.map.parseMapFile("maps/map1.txt");
+        if (mapPath != null) {
+            this.map.parseMapFile(mapPath);
+        }
         this.lava = new Lava(-7, 2, this.player, game);
 
     }
@@ -56,7 +58,7 @@ public class World {
         return IEntity.dummy;
     }
 
-    private boolean removeEntity(IEntity entity) {
+    public boolean removeEntity(IEntity entity) {
         if (entity == IEntity.dummy) return false;
         return entities.remove(entity);
     }
@@ -119,7 +121,7 @@ public class World {
             return true;
         }
 
-        if (entity.flags().is(Flag.Breaking) && mapTile.is(Flag.Breakable)) {
+        if (entity.flags().is(Flag.Breaking) && jointFlags.is(Flag.Breakable)) {
             map.setBlock(newPos.x(), newPos.y(), Tile.None);
             removeEntity(entityAt);
 
