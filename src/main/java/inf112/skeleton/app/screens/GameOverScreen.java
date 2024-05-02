@@ -56,6 +56,15 @@ public class GameOverScreen implements Screen {
             SoundEffect.LavaAmbience.loop(0.20f);
 
         }
+
+        // Escape
+        if (AmateurInput.isKeyJustPressed(Input.Keys.ESCAPE)) {
+          screenManager.restartGame();
+          screenManager.showTitleScreen();
+          SoundEffect.GameOverMusic.stop();
+          SoundEffect.SelectSFX.play(0.25f);
+          SoundEffect.GameMusic.loop(0.30f);
+      }
     }
 
     @Override
