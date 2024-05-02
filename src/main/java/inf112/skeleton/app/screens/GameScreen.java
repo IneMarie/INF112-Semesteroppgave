@@ -2,7 +2,7 @@ package inf112.skeleton.app.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -17,7 +17,7 @@ import inf112.skeleton.app.assets.Textures;
 import inf112.skeleton.app.world.World;
 
 
-public class GameScreen implements Screen {
+public class GameScreen extends ScreenAdapter {
     private SpriteBatch batch;
     private BitmapFont font;
     private Sound bellSound;
@@ -70,11 +70,7 @@ public class GameScreen implements Screen {
         var v = new Vector2(0, world.getPlayerScreenPosition().y);
         worldCamera.setTarget(v);
     }
-    
-    @Override
-    public void show() {
-    }
-    
+
     @Override
     public void render(float delta) {
         update(delta);
@@ -101,34 +97,13 @@ public class GameScreen implements Screen {
             SoundEffect.LavaAmbience.stop();
             SoundEffect.SelectSFX.play(0.25f);
             SoundEffect.GameMusic.loop(0.30f);
-            
-
         }
-        
     }
     
     @Override
     public void resize(int width, int height) {
         worldCamera.onResize(width, height);
         uiCamera.onResize(width, height);
-    }
-    
-    @Override
-    public void pause() {
-    }
-    
-    @Override
-    public void resume() {
-    }
-    
-    @Override
-    public void hide() {
-        
-    }
-    
-    // Getter metode for batch
-    public SpriteBatch getBatch() {
-        return batch;
     }
     
     public void setGameOver() {

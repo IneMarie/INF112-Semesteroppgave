@@ -1,7 +1,7 @@
 package inf112.skeleton.app.screens;
 
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -11,7 +11,7 @@ import inf112.skeleton.app.CameraController2D;
 import inf112.skeleton.app.assets.SoundEffect;
 import inf112.skeleton.app.assets.Textures;
 
-public class TitleScreen implements Screen {
+public class TitleScreen extends ScreenAdapter {
   private final ScreenManager screenManager;
   private final SpriteBatch batch;
   private CameraController2D uiCamera;
@@ -28,10 +28,6 @@ public class TitleScreen implements Screen {
     uiCamera.screenAnchor.y = 0f;
 
     SoundEffect.GameMusic.loop(0.30f);
-  }
-  
-  @Override
-  public void show() {
   }
   
   @Override
@@ -57,18 +53,6 @@ public class TitleScreen implements Screen {
   public void resize(int width, int height) {
     uiCamera.onResize(width, height);
 
-  }
-  
-  @Override
-  public void pause() {
-  }
-  
-  @Override
-  public void resume() {
-  }
-  
-  @Override
-  public void hide() {
   }
   
   @Override

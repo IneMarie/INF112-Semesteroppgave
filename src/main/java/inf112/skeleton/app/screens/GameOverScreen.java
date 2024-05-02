@@ -1,7 +1,7 @@
 package inf112.skeleton.app.screens;
 
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -13,7 +13,7 @@ import inf112.skeleton.app.assets.SoundEffect;
 import inf112.skeleton.app.assets.Textures;
 
 
-public class GameOverScreen implements Screen {
+public class GameOverScreen extends ScreenAdapter {
     private final ScreenManager screenManager;
     private CameraController2D uiCamera;
     private final SpriteBatch batch;
@@ -27,10 +27,6 @@ public class GameOverScreen implements Screen {
         uiCamera = new CameraController2D(720);
         uiCamera.screenAnchor.x = 0f;
         uiCamera.screenAnchor.y = 0f;
-    }
-
-    @Override
-    public void show() {
     }
 
     @Override
@@ -54,7 +50,6 @@ public class GameOverScreen implements Screen {
             SoundEffect.SelectSFX.play(0.25f);
             SoundEffect.GameMusic.loop(0.30f);
             SoundEffect.LavaAmbience.loop(0.20f);
-
         }
 
         // Escape
@@ -70,19 +65,6 @@ public class GameOverScreen implements Screen {
     @Override
     public void resize(int width, int height) {
       uiCamera.onResize(width, height);
-
-    }
-
-    @Override
-    public void pause() {
-    }
-
-    @Override
-    public void resume() {
-    }
-
-    @Override
-    public void hide() {
     }
 
     @Override

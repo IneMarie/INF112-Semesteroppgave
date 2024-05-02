@@ -61,7 +61,7 @@ public class ScreenManager extends Game {
         setScreen(winScreen);
     }
 
-      /**
+    /**
      * Switches to infoScreen
      */
     public void showInfoScreen() {
