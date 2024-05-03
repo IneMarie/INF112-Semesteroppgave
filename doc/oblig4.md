@@ -74,3 +74,9 @@ Dette er gjort fordi det er lettere å implementere på en måte som er gøy å 
 **Oppdater hvilke krav dere har prioritert, hvor langt dere har kommet og hva dere har gjort siden forrige gang.**
 
 Vi har prioritert lyd og tester, og ble ferdige med det.
+
+**Angående fabrikker**
+
+Vi har ikke fabrikker i koden fordi vi ikke har sett noe særlig behov for dette slik som koden er nå.
+Entity konstruktøren gir samme funksjon som en fabrikk, i den forstand at man kan lage en vilkårlig entity type basert
+på en texture og noen flagg (Tile).
