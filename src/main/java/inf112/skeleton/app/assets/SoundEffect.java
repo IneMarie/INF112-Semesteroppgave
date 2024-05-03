@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 
 public enum SoundEffect {
-    // TODO erstatt "blipp.ogg" med skikkelige sound effects
     PlayerMoveSFX("footstep.wav"), // spilleren flytter seg
     LavaAmbience("lava ambience.wav"), // Lava vibes
     PlayerDeathSFX("Player Death.wav"), // spilleren dør av lava
