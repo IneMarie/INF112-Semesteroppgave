@@ -65,6 +65,13 @@ Dette er brukerhistorier for de store endringene vi har gjort siden sist innleve
     * Arbeidsoppgaver:
         * Skrive tester til de forskjellige klassene i spillet som behandler logikk.
 
+
+3. Som en spiller vil jeg har en hjelpe side, slik at jeg bedre kan vite hvordan jeg spiller spillet
+    * Akseptansekriterier:
+        * Hjelpe side som viser kontroller og forklarer spillet
+    * Arbeidsoppgaver:
+        * Lage en hjelpeside
+
 **Har dere gjort justeringer på kravene som er med i MVP? Forklar i så fall hvorfor. Hvis det er gjort endringer i
 rekkefølge utfra hva som er gitt fra kunde, hvorfor er dette gjort?**
 
