@@ -58,12 +58,12 @@ Prosjektet vårt er kodet i Java, og vi har tatt utgangspunkt i LibGDX framework
 
 
 TLDR forklaring for klassediagrammet:
-`/doc/ `holder styr på alle oblig innleveringene 
-`/src/main/resources` inneholder alle lydeffekter, bilder, osv
-`/src/main/java/inf112/skeleton/app/assets` holder styr på lydeffekter, og tiles + flags
-`/src/main/java/inf112/skeleton/app/screens/ScreenManager.java`, holder styr på alle de ulike skjermene (og indirekte gamestaten) slik at man kan bytte mellom dem. Disse er: `TitleScreen`, `InfoScreen`, `GameScreen`, `WinScreen`, `GameOverScreen`. 
-`/src/main/java/inf112/skeleton/app/world` inneholder alle klassene som påvirker selve spillet.
-`/src/main/java/inf112/skeleton/app/AmateurInput.java` inneholder all logikk for spiller bevegelse
-`/src/main/java/inf112/skeleton/app/CameraController.java` inneholder all logikk for spill kamera
+*`/doc/ `holder styr på alle oblig innleveringene 
+*`/src/main/resources` inneholder alle lydeffekter, bilder, osv
+*`/src/main/java/inf112/skeleton/app/assets` holder styr på lydeffekter, og tiles + flags
+*`/src/main/java/inf112/skeleton/app/screens/ScreenManager.java`, holder styr på alle de ulike skjermene (og indirekte gamestaten) slik at man kan bytte mellom dem. Disse er: `TitleScreen`, *`InfoScreen`, `GameScreen`, `WinScreen`, `GameOverScreen`. 
+*`/src/main/java/inf112/skeleton/app/world` inneholder alle klassene som påvirker selve spillet.
+*`/src/main/java/inf112/skeleton/app/AmateurInput.java` inneholder all logikk for spiller bevegelse
+*`/src/main/java/inf112/skeleton/app/CameraController.java` inneholder all logikk for spill kamera
 
 ![graph](graph.png)
