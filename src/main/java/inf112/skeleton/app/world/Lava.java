@@ -18,7 +18,7 @@ public class Lava {
   private Player player;
   private GameScreen game;
   private int gridCols = 16;
-  private boolean reachedPlayerOrTop;
+  public boolean reachedPlayerOrTop;
   
   private static final Texture texture = Textures.Lava.texture;
   private static final Texture topTexture = Textures.LavaTop.texture;
@@ -33,7 +33,7 @@ public class Lava {
   * @param game           - makes it possible to set a game over condition
   */
   public Lava(int lavaStartValue, float lavaRiseTimer, Player player, GameScreen game) {
-    this.lavaStartValue = lavaStartValue - 1;
+    this.lavaStartValue = lavaStartValue;
     this.lavaHeight = 0;
     this.lavaRiseTimer = lavaRiseTimer;
     this.player = player;
@@ -90,7 +90,7 @@ public class Lava {
   }
   
   // Checks if the player is dying of lava
-  private boolean playerLavaDeath() {
+  public boolean playerLavaDeath() {
     return (lavaStartValue <= player.getRow() && player.getRow() < lavaStartValue + lavaHeight) || lavaStartValue > player.getRow();
   }
   
