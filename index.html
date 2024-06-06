@@ -38,26 +38,14 @@ img {
 <header class="w3-container w3-center" style="padding:100px 16px; background-size: cover; background-position: center;">
   <h1 class="w3-margin w3-jumbo">BLOCK-PAIN!</h1>
   <p class="w3-large">INF112 semesteroppgave</p>
-  <button id="lastNedKnapp" class="w3-button w3-black w3-padding-large w3-large w3-margin-top">Last ned (.jar)</button>
+  <button id="lastNedKnapp" class="w3-button w3-black w3-padding-large w3-large w3-margin-top" onclick="redirectToSite()">Last ned (.jar)</button>
 </header>
 
 <script>
-  document.getElementById("lastNedKnapp").addEventListener("click", function(){
-      // Lage et skjult nedlastingslenke
-      var nedlastingslenke = document.createElement('a');
-      nedlastingslenke.setAttribute('href', 'BlockPainGame.jar'); 
-      nedlastingslenke.setAttribute('download', 'BlockPainGame.jar');
-  
-      // Legge til den skjulte lenken i dokumentet
-      document.body.appendChild(nedlastingslenke);
-  
-      // Simulere et klikk på den skjulte lenken
-      nedlastingslenke.click();
-  
-      // Fjerne den skjulte lenken fra dokumentet
-      document.body.removeChild(nedlastingslenke);
-  });
-  </script>
+  function redirectToSite() {
+    window.location.href = "https://www.dropbox.com/scl/fo/97rye986rkyui3mo7rymz/AG3poadUsAKVhq3Q6FA5F4U?rlkey=67dyu1799fl7g98hqds7eenn1&st=cqdk90cq&dl=0";
+  }
+</script>
 
 <!-- First Grid -->
 <div class="w3-row-padding w3-padding-64 w3-container">
